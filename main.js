@@ -54,7 +54,7 @@
       id: 5,
       question: "지금 상황에서 전문가의 검토가 필요하다고 느끼시나요?",
       options: [
-        { label: "✔ 전문가의 도움이 반드시 필요하다고 느껴집니다 (혼자 판단하기 어렵습니다)", score: 20 },
+        { label: "✔ 전문가의 도움이 반드시 필요하다고 느껴집니다", score: 20 },
         { label: "✔ 전문가의 검토가 필요할 것 같습니다", score: 15 },
         { label: "✔ 아직은 잘 모르겠습니다", score: 10 },
         { label: "✔ 혼자 판단해도 될 것 같습니다", score: 5 },
@@ -181,7 +181,10 @@
         var id = "q" + q.id + "-opt-" + i;
         var checked = selectedIdx === i ? " checked" : "";
         var labelClasses = [];
-        if (q.id === 2) {
+        if (
+          q.id === 2 &&
+          opt.label.indexOf("보험금을 받았지만 금액이 적다고 느끼시나요?") === -1
+        ) {
           labelClasses.push("quiz-option__label--q2-single-line-mobile");
         }
         if (q.id === 6) {
@@ -206,11 +209,11 @@
         if (opt.label.indexOf("보험금을 받았지만 금액이 적다고 느끼시나요?") !== -1) {
           renderedLabel = renderedLabel.replace("적다고 ", "적다고<br />");
         }
-        if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고 느껴집니다 (혼자 판단하기 어렵습니다)") !== -1) {
-          renderedLabel = renderedLabel.replace("필요하다고 ", "필요하다고<br />");
+        if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고 느껴집니다") !== -1) {
+          renderedLabel = renderedLabel.replace("필요하다고 ", "필요하<br />다고 ");
         }
         if (opt.label.indexOf("전문가의 도움이 필요하지 않다고 생각합니다") !== -1) {
-          renderedLabel = renderedLabel.replace("않다고 ", "않다고<br />");
+          renderedLabel = renderedLabel.replace("필요하지 ", "필요하지<br />");
         }
         return (
           '<div class="quiz-option">' +
