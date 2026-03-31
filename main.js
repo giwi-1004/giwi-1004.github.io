@@ -392,19 +392,39 @@
     initKakaoChatLinks();
   });
 
+  function isValidExternalUrl(url) {
+    if (!url) return false;
+    if (url === "#") return false;
+    return /^https?:\/\//i.test(url);
+  }
+
   function initKakaoChatLinks() {
     var nodes = document.querySelectorAll("a.kakao-chat-link");
     if (!nodes.length) return;
-    if (KAKAO_CHAT_URL) {
-      nodes.forEach(function (a) {
-        a.href = KAKAO_CHAT_URL;
-      });
-    } else {
-      nodes.forEach(function (a) {
-        a.addEventListener("click", function (e) {
-          e.preventDefault();
-        });
-      });
+
+    var qrAnchor = document.querySelector("a.kakao-qr__link");
+    var qrHref = qrAnchor ? qrAnchor.getAttribute("href") || "" : "";
+    var resolvedUrl = "";
+
+    // Priority: explicit JS constant -> QR anchor href
+    if (isValidExternalUrl(KAKAO_CHAT_URL)) {
+      resolvedUrl = KAKAO_CHAT_URL;
+    } else if (isValidExternalUrl(qrHref)) {
+      resolvedUrl = qrHref;
     }
+
+    if (resolvedUrl) {
+      nodes.forEach(function (a) {
+        a.href = resolvedUrl;
+      });
+      return;
+    }
+
+    // No valid destination configured yet: keep links inert
+    nodes.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+      });
+    });
   }
 })();
