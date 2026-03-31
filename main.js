@@ -333,11 +333,52 @@
     var form = document.getElementById("contact-form");
     var formBlock = document.getElementById("form-block");
     var successBlock = document.getElementById("form-success");
+    var consentCheckbox = document.getElementById("privacy-consent");
+    var submitBtn = document.getElementById("form-submit-btn");
+    var modal = document.getElementById("privacy-modal");
+    var openModalBtn = document.getElementById("privacy-view-btn");
+    var closeModalBtn = document.getElementById("privacy-modal-close");
 
-    if (!form || !formBlock || !successBlock) return;
+    if (!form || !formBlock || !successBlock || !consentCheckbox || !submitBtn) return;
+
+    function syncSubmitState() {
+      submitBtn.disabled = !consentCheckbox.checked;
+    }
+
+    syncSubmitState();
+    consentCheckbox.addEventListener("change", syncSubmitState);
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add("is-hidden");
+    }
+
+    if (openModalBtn && modal) {
+      openModalBtn.addEventListener("click", function () {
+        modal.classList.remove("is-hidden");
+      });
+    }
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener("click", closeModal);
+    }
+
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeModal();
+    });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!consentCheckbox.checked) {
+        alert("개인정보 수집 및 이용 동의가 필요합니다.");
+        return;
+      }
       var fd = new FormData(form);
       var payload = {
         name: fd.get("name"),
