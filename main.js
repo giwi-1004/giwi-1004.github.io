@@ -180,6 +180,30 @@
       .map(function (opt, i) {
         var id = "q" + q.id + "-opt-" + i;
         var checked = selectedIdx === i ? " checked" : "";
+        var labelClasses = [];
+        if (q.id === 2) {
+          labelClasses.push("quiz-option__label--q2-single-line-mobile");
+        }
+        if (q.id === 6) {
+          labelClasses.push("quiz-option__label--q6-single-line-mobile");
+        }
+        if (
+          opt.label.indexOf("후유장해 진단은 받았지만 보험금") !== -1 ||
+          opt.label.indexOf("보험금을 받았지만 금액이 적다고") !== -1 ||
+          opt.label.indexOf("인터넷 검색으로만 확인하셨나요?") !== -1 ||
+          opt.label.indexOf("전문가 상담을 받아보신 적 있으신가요?") !== -1 ||
+          opt.label.indexOf("보험사 판단이 맞다고 생각합니다") !== -1 ||
+          opt.label.indexOf("전문가의 검토가 필요할 것 같습니다") !== -1 ||
+          opt.label.indexOf("전문가의 도움이 필요하지 않다고 생각합니다") !== -1
+        ) {
+          labelClasses.push("quiz-option__label--single-line-mobile");
+        }
+        if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고") !== -1) {
+          labelClasses.push("quiz-option__label--single-line-mobile-long");
+        }
+        var labelClass = labelClasses.length
+          ? ' class="' + labelClasses.join(" ") + '"'
+          : "";
         return (
           '<div class="quiz-option">' +
           '<input type="radio" name="quiz-q' +
@@ -193,7 +217,9 @@
           ">" +
           '<label for="' +
           id +
-          '">' +
+          '"' +
+          labelClass +
+          ">" +
           escapeHtml(opt.label) +
           "</label></div>"
         );
