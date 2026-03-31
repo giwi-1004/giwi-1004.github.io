@@ -1087,9 +1087,9 @@ a.btn {
 
 @media (max-width: 430px) {
   .quiz-option label.quiz-option__label--single-line-mobile {
-    font-size: 0.79rem;
-    letter-spacing: -0.03em;
-    white-space: nowrap;
+    font-size: 0.9375rem;
+    letter-spacing: normal;
+    white-space: normal;
   }
 
   .quiz-option label.quiz-option__label--single-line-mobile-long {
@@ -1101,24 +1101,24 @@ a.btn {
   }
 
   .quiz-option label.quiz-option__label--q2-single-line-mobile {
-    font-size: 0.74rem;
-    letter-spacing: -0.035em;
-    white-space: nowrap;
+    font-size: 0.9375rem;
+    letter-spacing: normal;
+    white-space: normal;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
   }
 
   .quiz-option label.quiz-option__label--q2-two-line-mobile {
-    font-size: 0.84rem;
-    letter-spacing: -0.02em;
+    font-size: 0.9375rem;
+    letter-spacing: normal;
     line-height: 1.45;
     white-space: normal;
   }
 
   .quiz-option label.quiz-option__label--q6-single-line-mobile {
-    font-size: 0.73rem;
-    letter-spacing: -0.035em;
-    white-space: nowrap;
+    font-size: 0.9375rem;
+    letter-spacing: normal;
+    white-space: normal;
     padding-left: 0.68rem;
     padding-right: 0.68rem;
   }
