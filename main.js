@@ -187,6 +187,9 @@
         ) {
           labelClasses.push("quiz-option__label--q2-single-line-mobile");
         }
+        if (opt.label.indexOf("보험금을 받았지만 금액이 적다고 느끼시나요?") !== -1) {
+          labelClasses.push("quiz-option__label--q2-two-line-mobile");
+        }
         if (q.id === 6) {
           labelClasses.push("quiz-option__label--q6-single-line-mobile");
         }
@@ -207,7 +210,7 @@
           renderedLabel = renderedLabel.replace("받았지만 ", "받았지만<br />");
         }
         if (opt.label.indexOf("보험금을 받았지만 금액이 적다고 느끼시나요?") !== -1) {
-          renderedLabel = renderedLabel.replace("적다고 ", "적다고<br />");
+          renderedLabel = renderedLabel.replace("받았지만 ", "받았지만<br />");
         }
         if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고 느껴집니다") !== -1) {
           renderedLabel = renderedLabel.replace("필요하다고 ", "필요하<br />다고 ");

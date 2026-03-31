@@ -784,13 +784,13 @@ a.btn {
 
 @media (max-width: 430px) {
   .compare-callout--single-line-mobile {
-    font-size: 0.79rem;
+    font-size: 0.86rem;
     letter-spacing: -0.03em;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .compare-callout--single-line-mobile br {
-    display: none;
+    display: inline;
   }
 }
 
@@ -1106,6 +1106,13 @@ a.btn {
     white-space: nowrap;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
+  }
+
+  .quiz-option label.quiz-option__label--q2-two-line-mobile {
+    font-size: 0.84rem;
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+    white-space: normal;
   }
 
   .quiz-option label.quiz-option__label--q6-single-line-mobile {
