@@ -188,22 +188,30 @@
           labelClasses.push("quiz-option__label--q6-single-line-mobile");
         }
         if (
-          opt.label.indexOf("후유장해 진단은 받았지만 보험금") !== -1 ||
-          opt.label.indexOf("보험금을 받았지만 금액이 적다고") !== -1 ||
           opt.label.indexOf("인터넷 검색으로만 확인하셨나요?") !== -1 ||
           opt.label.indexOf("전문가 상담을 받아보신 적 있으신가요?") !== -1 ||
           opt.label.indexOf("보험사 판단이 맞다고 생각합니다") !== -1 ||
-          opt.label.indexOf("전문가의 검토가 필요할 것 같습니다") !== -1 ||
-          opt.label.indexOf("전문가의 도움이 필요하지 않다고 생각합니다") !== -1
+          opt.label.indexOf("전문가의 검토가 필요할 것 같습니다") !== -1
         ) {
           labelClasses.push("quiz-option__label--single-line-mobile");
         }
-        if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고") !== -1) {
-          labelClasses.push("quiz-option__label--single-line-mobile-long");
-        }
+        // Keep this option readable on two lines by not forcing nowrap style.
         var labelClass = labelClasses.length
           ? ' class="' + labelClasses.join(" ") + '"'
           : "";
+        var renderedLabel = escapeHtml(opt.label);
+        if (opt.label.indexOf("후유장해 진단은 받았지만 보험금 청구를 안 하셨나요?") !== -1) {
+          renderedLabel = renderedLabel.replace("받았지만 ", "받았지만<br />");
+        }
+        if (opt.label.indexOf("보험금을 받았지만 금액이 적다고 느끼시나요?") !== -1) {
+          renderedLabel = renderedLabel.replace("적다고 ", "적다고<br />");
+        }
+        if (opt.label.indexOf("전문가의 도움이 반드시 필요하다고 느껴집니다 (혼자 판단하기 어렵습니다)") !== -1) {
+          renderedLabel = renderedLabel.replace("필요하다고 ", "필요하다고<br />");
+        }
+        if (opt.label.indexOf("전문가의 도움이 필요하지 않다고 생각합니다") !== -1) {
+          renderedLabel = renderedLabel.replace("않다고 ", "않다고<br />");
+        }
         return (
           '<div class="quiz-option">' +
           '<input type="radio" name="quiz-q' +
@@ -220,7 +228,7 @@
           '"' +
           labelClass +
           ">" +
-          escapeHtml(opt.label) +
+          renderedLabel +
           "</label></div>"
         );
       })
