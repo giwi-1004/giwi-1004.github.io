@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var KAKAO_CHAT_URL = "";
+  var KAKAO_CHAT_URL = "https://open.kakao.com/o/sKMhvtoi";
   /* QR(kakao-qr-ohayeon.svg)에 인코딩된 주소와 동일한 카카오 채널/오픈채팅 URL을 넣으세요.
   예: https://open.kakao.com/o/xxxxxxxx */
 
