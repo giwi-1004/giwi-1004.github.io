@@ -373,7 +373,7 @@
       if (e.key === "Escape") closeModal();
     });
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
       if (!consentCheckbox.checked) {
         alert("개인정보 수집 및 이용 동의가 필요합니다.");
@@ -381,14 +381,42 @@
       }
       var fd = new FormData(form);
       var payload = {
-        name: fd.get("name"),
-        phone: fd.get("phone"),
-        situation: fd.get("situation"),
+        name: (fd.get("name") || "").toString().trim(),
+        phone: (fd.get("phone") || "").toString().trim(),
+        situation: (fd.get("situation") || "").toString().trim(),
         resultType: checkState.lastResult ? checkState.lastResult.type : null,
       };
-      console.log("Form submitted:", payload);
-      formBlock.classList.add("is-hidden");
-      successBlock.classList.remove("is-hidden");
+
+      submitBtn.disabled = true;
+      try {
+        var res = await fetch("/api/lead-request", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: payload.name,
+            phone: payload.phone,
+            situation: payload.situation,
+          }),
+        });
+
+        if (!res.ok) {
+          var errBody = await res.json().catch(function () {
+            return {};
+          });
+          throw new Error(errBody.error || "저장 실패");
+        }
+
+        formBlock.classList.add("is-hidden");
+        successBlock.classList.remove("is-hidden");
+      } catch (_err) {
+        alert("요청 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      } finally {
+        if (!formBlock.classList.contains("is-hidden")) {
+          syncSubmitState();
+        }
+      }
     });
   }
 
