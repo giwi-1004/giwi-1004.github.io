@@ -8,11 +8,14 @@
     />
     <meta name="theme-color" content="#f8fafc" />
     <meta name="format-detection" content="telephone=no" />
-    <!-- GitHub Pages에는 /api가 없어 저장 요청은 여기 주소(Vercel Production URL)로 갑니다. 아래 예시 도메인에 배포가 없으면 브라우저에 "Failed to fetch"가 납니다. Vercel 대시보드 → 프로젝트 → 도메인에서 실제 주소를 확인해 content에 넣으세요. 사이트를 Vercel에만 올리면 content="" 로 비워도 됩니다. -->
+    <!-- GitHub Pages: 아래 supabase-* 메타로 DB에 직접 저장(Vercel 불필요). 공개 키만 사용·RLS는 supabase/rls-lead-requests.sql 실행. -->
+    <meta name="supabase-url" content="https://gcndjtetltrujkkprlvd.supabase.co" />
     <meta
-      name="lead-api-origin"
-      content="https://giwi-landing-page.vercel.app"
+      name="supabase-anon-key"
+      content="sb_publishable_oyMz2VefdOypvmHpfzzBgA_b80qhIgv"
     />
+    <!-- Vercel 등에서만 /api 쓸 때: Production origin. 직접 Supabase 저장 시 비워 둡니다. -->
+    <meta name="lead-api-origin" content="" />
     <title>후유장해 보험금 보상 가능성 확인 | 신체손해사정사</title>
     <meta
       name="description"

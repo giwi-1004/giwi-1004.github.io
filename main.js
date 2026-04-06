@@ -9,6 +9,36 @@
     origin = ((origin || "") + "").trim().replace(/\/$/, "");
     return origin ? origin + "/api/lead-request" : "/api/lead-request";
   }
+
+  function getSupabasePublicConfig() {
+    var u = document.querySelector('meta[name="supabase-url"]');
+    var k = document.querySelector('meta[name="supabase-anon-key"]');
+    var url = u && u.getAttribute("content");
+    var key = k && k.getAttribute("content");
+    url = ((url || "") + "").trim().replace(/\/$/, "");
+    key = ((key || "") + "").trim();
+    if (!url || !key) return null;
+    return { url: url, key: key };
+  }
+
+  async function postLeadViaSupabase(cfg, row) {
+    return fetch(cfg.url + "/rest/v1/lead_requests", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: cfg.key,
+        Authorization: "Bearer " + cfg.key,
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify([
+        {
+          name: row.name,
+          phone: row.phone,
+          situation: row.situation,
+        },
+      ]),
+    });
+  }
   /* QR(kakao-qr-ohayeon.svg)에 인코딩된 주소와 동일한 카카오 채널/오픈채팅 URL을 넣으세요.
   예: https://open.kakao.com/o/xxxxxxxx */
 
@@ -396,23 +426,42 @@
 
       submitBtn.disabled = true;
       try {
-        var res = await fetch(getLeadApiUrl(), {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+        var supa = getSupabasePublicConfig();
+        var res;
+        if (supa) {
+          res = await postLeadViaSupabase(supa, {
             name: payload.name,
             phone: payload.phone,
             situation: payload.situation,
-          }),
-        });
+          });
+        } else {
+          res = await fetch(getLeadApiUrl(), {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: payload.name,
+              phone: payload.phone,
+              situation: payload.situation,
+            }),
+          });
+        }
 
         if (!res.ok) {
-          var errBody = await res.json().catch(function () {
-            return {};
-          });
-          throw new Error(errBody.error || "저장 실패");
+          var raw = await res.text();
+          var errBody = {};
+          try {
+            errBody = JSON.parse(raw);
+          } catch (e) {
+            errBody = { error: raw || "저장 실패" };
+          }
+          throw new Error(
+            errBody.message ||
+              errBody.error ||
+              errBody.hint ||
+              "저장 실패"
+          );
         }
 
         formBlock.classList.add("is-hidden");
@@ -422,7 +471,7 @@
           "요청 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
         if (err && err.message === "Failed to fetch") {
           baseMsg +=
-            "\n\n(인터넷 연결을 확인하거나, lead-api-origin 설정과 Vercel 배포를 확인해주세요.)";
+            "\n\n(인터넷 연결을 확인하거나, supabase 메타·RLS 정책·Vercel 배포를 확인해주세요.)";
         } else if (err && err.message && err.message !== "저장 실패") {
           baseMsg += "\n\n(" + err.message + ")";
         }
