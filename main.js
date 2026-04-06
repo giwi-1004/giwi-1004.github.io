@@ -2,6 +2,13 @@
   "use strict";
 
   var KAKAO_CHAT_URL = "https://open.kakao.com/o/sKMhvtoi";
+
+  function getLeadApiUrl() {
+    var el = document.querySelector('meta[name="lead-api-origin"]');
+    var origin = el && el.getAttribute("content");
+    origin = ((origin || "") + "").trim().replace(/\/$/, "");
+    return origin ? origin + "/api/lead-request" : "/api/lead-request";
+  }
   /* QR(kakao-qr-ohayeon.svg)에 인코딩된 주소와 동일한 카카오 채널/오픈채팅 URL을 넣으세요.
   예: https://open.kakao.com/o/xxxxxxxx */
 
@@ -389,7 +396,7 @@
 
       submitBtn.disabled = true;
       try {
-        var res = await fetch("/api/lead-request", {
+        var res = await fetch(getLeadApiUrl(), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -410,8 +417,16 @@
 
         formBlock.classList.add("is-hidden");
         successBlock.classList.remove("is-hidden");
-      } catch (_err) {
-        alert("요청 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      } catch (err) {
+        var baseMsg =
+          "요청 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
+        if (err && err.message === "Failed to fetch") {
+          baseMsg +=
+            "\n\n(인터넷 연결을 확인하거나, lead-api-origin 설정과 Vercel 배포를 확인해주세요.)";
+        } else if (err && err.message && err.message !== "저장 실패") {
+          baseMsg += "\n\n(" + err.message + ")";
+        }
+        alert(baseMsg);
       } finally {
         if (!formBlock.classList.contains("is-hidden")) {
           syncSubmitState();
