@@ -2,7 +2,7 @@
 
 export function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-b from-[#0F172A] to-[#1E293B] px-6 py-14 rounded-b-[1.75rem] overflow-hidden">
+    <section className="relative bg-gradient-to-b from-[#0F172A] to-[#1E293B] px-6 py-14 overflow-hidden">
       <div className="mb-3">
         <span className="inline-block px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white/90 bg-white/10 rounded-full border border-white/10">
           실손보험 소비자선임권

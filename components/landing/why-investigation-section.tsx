@@ -25,9 +25,9 @@ export function WhyInvestigationSection() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                 <div className="rounded-3xl border border-[#0F172A]/10 bg-[#F8FAFC] p-6 h-auto">
                   <p className="text-[22px] leading-[1.3] font-extrabold text-[#0F172A] mb-2 break-keep">입원 인정 시</p>
-                  <p className="text-[17px] leading-[1.55] text-[#334155] break-keep">
-                    실손보험 지급 범위<br />
-                    확대 가능
+                  <p className="text-[17px] leading-[1.6] text-[#334155] break-keep">
+                    <span className="block">실손보험 지급 범위</span>
+                    <span className="block">확대 가능</span>
                   </p>
                   <p className="text-[17px] font-semibold text-[#475569] mt-2 break-keep">예시 최대 5,000만원</p>
                 </div>
