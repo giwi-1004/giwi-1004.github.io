@@ -4,10 +4,10 @@ import { MessageCircle } from "lucide-react"
 
 export function KakaoSection() {
   return (
-    <section className="px-6 py-14 bg-[#FFFDF2] overflow-x-hidden">
+    <section className="px-6 py-12 bg-[#FFFDF2] overflow-x-hidden">
       <div className="bg-[#FFF9E8] border border-[#E5E7EB] rounded-3xl p-5">
         <div className="h-1.5 w-16 mx-auto mb-4 rounded-full bg-[#FEE500]/55" />
-        <h2 className="text-[34px] font-extrabold text-[#0F172A] text-center leading-[1.2] mb-4">
+        <h2 className="text-[30px] font-extrabold text-[#0F172A] text-center leading-[1.24] mb-4">
           카카오톡으로<br />
           빠른 문의 가능
         </h2>
@@ -22,7 +22,7 @@ export function KakaoSection() {
           </div>
         </div>
 
-        <p className="text-[18px] text-[#334155] text-center leading-[1.5] mb-8">
+        <p className="text-[17px] text-[#334155] text-center leading-[1.5] mb-7">
           실손보험 청구일과<br />
           보험사 조사 여부를 남겨주세요.
         </p>

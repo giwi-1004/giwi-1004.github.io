@@ -43,15 +43,15 @@ export function LeadFormSection() {
 
   if (isSubmitted) {
     return (
-      <section id="lead-form" className="px-6 py-14 bg-white overflow-x-hidden">
+      <section id="lead-form" className="px-6 py-12 bg-white overflow-x-hidden">
         <div className="text-center">
           <div className="w-20 h-20 mx-auto mb-6 bg-[#2563EB]/10 rounded-full flex items-center justify-center">
             <CheckCircle2 className="w-10 h-10 text-[#2563EB]" />
           </div>
-          <h2 className="text-[34px] font-extrabold text-[#0F172A] mb-3 leading-[1.24]">
+          <h2 className="text-[30px] font-extrabold text-[#0F172A] mb-3 leading-[1.24]">
             확인 요청이 완료되었습니다
           </h2>
-          <p className="text-[#64748B] text-[18px] leading-[1.55]">
+          <p className="text-[#64748B] text-[17px] leading-[1.5]">
             입력하신 연락처로<br />
             빠른 시간 내에 연락드리겠습니다.
           </p>
@@ -64,12 +64,12 @@ export function LeadFormSection() {
   }
 
   return (
-    <section id="lead-form" className="px-6 py-14 bg-white overflow-x-hidden">
+    <section id="lead-form" className="px-6 py-12 bg-white overflow-x-hidden">
       {/* Section Title */}
-      <h2 className="text-[34px] font-extrabold text-[#0F172A] mb-2 text-balance leading-[1.24]">
+      <h2 className="text-[30px] font-extrabold text-[#0F172A] mb-2 text-balance leading-[1.24]">
         지금 확인 요청하기
       </h2>
-      <p className="text-[18px] text-[#64748B] leading-[1.55] mb-8">
+      <p className="text-[17px] text-[#64748B] leading-[1.5] mb-7">
         상담 신청접수 후 순차적으로 연락드립니다
       </p>
 
@@ -216,7 +216,7 @@ export function LeadFormSection() {
         <Button 
           type="submit"
           disabled={isSubmitting || !formData.name || !formData.phone || !isConsentChecked}
-          className="w-full h-16 px-6 text-[20px] font-bold bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-[#CBD5E1] disabled:text-white/80 text-white rounded-[22px] shadow-sm shadow-[#2563EB]/20 mt-8"
+          className="w-full h-16 px-5 text-[18px] font-bold bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-[#CBD5E1] disabled:text-white/80 text-white rounded-[22px] shadow-sm shadow-[#2563EB]/20 mt-8"
         >
           {isSubmitting ? "요청 중..." : "소비자선임 가능 여부 확인하기"}
         </Button>

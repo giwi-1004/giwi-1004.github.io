@@ -15,9 +15,9 @@ export default function LandingPage() {
       <WhyInvestigationSection />
       <WhyConsumerRightsSection />
       <ExpertSection />
-      <section className="px-6 py-14 bg-white">
+      <section className="px-6 py-12 bg-white">
         <a href="#lead-form" className="block">
-          <Button className="w-full h-16 px-6 text-[20px] font-bold bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-[22px] shadow-sm shadow-[#2563EB]/20">
+          <Button className="w-full h-16 px-5 text-[18px] font-bold bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-[22px] shadow-sm shadow-[#2563EB]/20">
             소비자선임권 가능 여부 확인하기
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
