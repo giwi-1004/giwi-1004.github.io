@@ -11,6 +11,10 @@ create table if not exists public.lead_inquiries (
 
 alter table public.lead_inquiries enable row level security;
 
+-- PostgREST anon 역할 권한 (RLS만으로는 INSERT가 막힐 수 있음)
+grant usage on schema public to anon;
+grant insert on table public.lead_inquiries to anon;
+
 -- 익명(랜딩 방문자) INSERT만 허용
 drop policy if exists "anon can insert lead inquiries" on public.lead_inquiries;
 create policy "anon can insert lead inquiries"
