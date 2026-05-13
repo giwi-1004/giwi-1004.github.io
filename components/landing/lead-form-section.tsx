@@ -10,10 +10,10 @@ import { submitLeadInquiry } from "@/lib/supabase/submit-lead"
 import { useReveal } from "@/lib/hooks/use-reveal"
 
 const inputFieldClass =
-  "h-[52px] min-h-[52px] w-full rounded-xl border-[1.5px] border-black/[0.08] bg-[#faf7f2] px-4 text-sm text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus-visible:border-[#c8742a] focus-visible:bg-white focus-visible:shadow-[0_0_0_3px_rgba(200,116,42,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
+  "h-[52px] min-h-[52px] w-full !rounded-xl border-[1.5px] border-black/[0.08] bg-[#faf7f2] px-4 text-sm text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus-visible:border-[#EA580C] focus-visible:bg-white focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
 
 const textareaFieldClass =
-  "min-h-[100px] w-full resize-y rounded-xl border-[1.5px] border-black/[0.08] bg-[#faf7f2] px-4 py-3.5 text-sm leading-[1.6] text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus-visible:border-[#c8742a] focus-visible:bg-white focus-visible:shadow-[0_0_0_3px_rgba(200,116,42,0.1)] focus-visible:outline-none focus-visible:ring-0"
+  "min-h-[100px] w-full resize-y !rounded-xl border-[1.5px] border-black/[0.08] bg-[#faf7f2] px-4 py-3.5 text-sm leading-[1.6] text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus-visible:border-[#EA580C] focus-visible:bg-white focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0"
 
 export function LeadFormSection() {
   const [formData, setFormData] = useState({
@@ -296,7 +296,7 @@ export function LeadFormSection() {
             !formData.phone ||
             !isConsentChecked
           }
-          className="ds-btn-primary mt-2 disabled:pointer-events-none disabled:bg-[#ccc] disabled:shadow-none disabled:transform-none"
+          className="ds-btn-primary mt-2 bg-[#EA580C] disabled:pointer-events-none disabled:opacity-50"
         >
           {isSubmitting ? "요청 중..." : "소비자선임권 상담 신청하기"}
         </button>

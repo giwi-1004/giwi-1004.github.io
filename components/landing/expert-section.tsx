@@ -33,7 +33,7 @@ export function ExpertSection() {
             className="h-[72px] w-[72px] shrink-0 rounded-full border-2 border-[rgba(212,164,76,0.4)] object-cover object-top"
           />
           <div>
-            <p className="ds-serif text-xl font-bold tracking-[-0.01em] text-white">
+            <p className="text-xl font-bold tracking-[-0.01em] text-white">
               오하연
             </p>
             <p className="mt-1 text-xs tracking-[0.03em] text-white/45">

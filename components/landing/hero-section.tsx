@@ -27,7 +27,7 @@ export function HeroSection() {
           실손보험 소비자선임권
         </span>
 
-        <h1 className="hero-animate hero-animate-delay-1 ds-serif text-[clamp(1.875rem,8vw,2.75rem)] leading-[1.25] font-bold tracking-[-0.02em] text-white text-balance break-keep">
+        <h1 className="hero-animate hero-animate-delay-1 text-[clamp(1.875rem,8vw,2.75rem)] leading-[1.25] font-bold tracking-[-0.02em] text-white text-balance break-keep">
           보험금 청구 전후,{" "}
           <span className="text-[#d4a44c]">당신에게 권리가 있습니다</span>
         </h1>
@@ -39,20 +39,23 @@ export function HeroSection() {
 
         <div className="hero-animate hero-animate-delay-3 my-9 flex">
           <div className="flex-1 rounded-l-[14px] border border-white/[0.07] py-5 text-center">
-            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">0원</p>
+            <p className="text-[28px] leading-none font-bold text-[#d4a44c]">0원</p>
             <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">수수료</p>
           </div>
           <div className="flex-1 border border-l-0 border-white/[0.07] py-5 text-center">
-            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">3일</p>
+            <p className="text-[28px] leading-none font-bold text-[#d4a44c]">3일</p>
             <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">신청 기한</p>
           </div>
           <div className="flex-1 rounded-r-[14px] border border-l-0 border-white/[0.07] py-5 text-center">
-            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">독립</p>
+            <p className="text-[28px] leading-none font-bold text-[#d4a44c]">독립</p>
             <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">전문가</p>
           </div>
-</div>
+        </div>
 
-        <a href="#lead-form" className="hero-animate hero-animate-delay-4 ds-btn-primary">
+        <a
+          href="#lead-form"
+          className="hero-animate hero-animate-delay-4 flex w-full items-center justify-center gap-2.5 rounded-[14px] bg-[#1E293B] py-4.5 text-base font-bold text-white no-underline transition-opacity hover:opacity-90"
+        >
           소비자선임권 가능 여부 확인하기
           <ArrowRight className="h-[18px] w-[18px] shrink-0" aria-hidden />
         </a>

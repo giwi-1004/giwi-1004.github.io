@@ -12,7 +12,7 @@ export function KakaoSection() {
         ref={cardRef}
         className="reveal rounded-[22px] border border-black/[0.06] bg-[#fffef8] px-5.5 py-9 text-center shadow-[0_2px_20px_rgba(0,0,0,0.05)]"
       >
-        <h2 className="ds-serif mb-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a2e] break-keep">
+        <h2 className="mb-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a2e] break-keep">
           카카오톡으로 문의하기
         </h2>
         <p className="mb-7 text-sm leading-[1.65] text-[#4a4a5a] break-keep">

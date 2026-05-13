@@ -30,7 +30,7 @@ export function QuickCheckSection() {
         {CHECKLIST_ITEMS.map((text) => (
           <div
             key={text}
-            className="flex items-center gap-3.5 rounded-xl border border-[rgba(200,116,42,0.15)] bg-[#faf7f2] px-4.5 py-4 text-sm font-medium text-[#1a1a1e] transition-[background,border-color] duration-200 hover:border-[rgba(200,116,42,0.3)] hover:bg-[#fff5eb] break-keep"
+            className="flex items-center gap-3.5 rounded-xl border border-gray-200 bg-[#F8FAFC] px-4.5 py-4 text-sm font-medium text-[#1a1a1e] break-keep"
           >
             <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-[#c8742a]">
               <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} aria-hidden />

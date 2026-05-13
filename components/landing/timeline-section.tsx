@@ -56,7 +56,7 @@ export function TimelineSection() {
           return (
             <div key={step.title} className="flex gap-5 pb-7 last:pb-0">
               <div className="flex shrink-0 flex-col items-center">
-                <div className="ds-serif flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#c8742a] bg-white text-sm font-bold text-[#c8742a] shadow-[0_4px_16px_rgba(200,116,42,0.15)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-sm font-bold text-white shadow-[0_4px_16px_rgba(234,88,12,0.15)]">
                   {step.step}
                 </div>
                 {!isLast ? (

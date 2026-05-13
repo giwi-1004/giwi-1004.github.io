@@ -1,18 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Serif_KR } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import '@fontsource/noto-sans-kr/300.css'
 import '@fontsource/noto-sans-kr/400.css'
 import '@fontsource/noto-sans-kr/500.css'
 import '@fontsource/noto-sans-kr/700.css'
 import './globals.css'
-
-const notoSerif = Noto_Serif_KR({
-  weight: ['400', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: '소비자선임권 안내 | 실손보험 손해사정',
@@ -51,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko" className={`${notoSerif.variable} bg-background`}>
-      <body className="antialiased" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
+    <html lang="ko" className="bg-background">
+      <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

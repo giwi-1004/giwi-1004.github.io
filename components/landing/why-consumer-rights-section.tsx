@@ -30,7 +30,7 @@ const CARD_BOTTOM: {
 }
 
 const cardClass =
-  "rounded-[18px] border border-black/[0.06] bg-white p-[22px_18px] shadow-[0_2px_16px_rgba(0,0,0,0.04)] transition-[transform,box-shadow] duration-250 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)]"
+  "rounded-[18px] border border-black/[0.06] bg-white p-[22px_18px] shadow-sm transition-[transform,box-shadow] duration-250 hover:-translate-y-[3px] hover:shadow-md"
 
 function BenefitCard({
   Icon,
@@ -61,7 +61,7 @@ export function WhyConsumerRightsSection() {
   const gridRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-[#faf7f2]">
+    <section className="bg-white">
       <div ref={headerRef} className="reveal">
         <p className="ds-section-label">소비자선임권 혜택</p>
         <h2 className="ds-section-title break-keep">
