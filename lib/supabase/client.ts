@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js"
+import { resolveSupabaseConfig } from "@/lib/supabase/config"
 
 export type LeadInquiry = {
   id: string
@@ -9,17 +10,14 @@ export type LeadInquiry = {
 }
 
 let client: SupabaseClient | null = null
+let clientKey: string | null = null
 
-export function getSupabaseClient(): SupabaseClient {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+export async function getSupabaseClient(): Promise<SupabaseClient> {
+  const { url, anonKey } = await resolveSupabaseConfig()
 
-  if (!url || !anonKey) {
-    throw new Error("Supabase environment variables are not configured")
-  }
-
-  if (!client) {
+  if (!client || clientKey !== `${url}:${anonKey}`) {
     client = createClient(url, anonKey)
+    clientKey = `${url}:${anonKey}`
   }
 
   return client

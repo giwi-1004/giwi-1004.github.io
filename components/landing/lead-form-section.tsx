@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CheckCircle2 } from "lucide-react"
-import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase/client"
+import { getSupabaseClient } from "@/lib/supabase/client"
 
 const inputFieldClass =
   "h-[52px] min-h-[52px] w-full rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 text-sm text-[#1E293B] shadow-none placeholder:text-[#94A3B8] focus-visible:border-[#EA580C] focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
@@ -38,11 +38,7 @@ export function LeadFormSection() {
     setIsSubmitting(true)
 
     try {
-      if (!isSupabaseConfigured()) {
-        throw new Error("Supabase is not configured")
-      }
-
-      const supabase = getSupabaseClient()
+      const supabase = await getSupabaseClient()
       const { error } = await supabase.from("lead_inquiries").insert({
         name: formData.name.trim(),
         phone: formData.phone.trim(),
@@ -50,12 +46,33 @@ export function LeadFormSection() {
       })
 
       if (error) {
+        console.error("Supabase insert error:", error)
+        if (error.code === "42P01") {
+          setSubmitError(
+            "데이터베이스 테이블이 없습니다. Supabase에서 setup.sql을 실행해 주세요."
+          )
+          return
+        }
+        if (error.code === "42501" || error.message.includes("row-level security")) {
+          setSubmitError(
+            "저장 권한이 없습니다. Supabase RLS 정책(anon INSERT)을 확인해 주세요."
+          )
+          return
+        }
         throw error
       }
 
       setIsSubmitted(true)
-    } catch {
-      setSubmitError("접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.")
+    } catch (err) {
+      console.error("Lead form submit error:", err)
+      const message = err instanceof Error ? err.message : ""
+      if (message === "NOT_CONFIGURED") {
+        setSubmitError(
+          "서버 연결 설정이 없습니다. Supabase URL·키를 배포 설정에 추가해 주세요."
+        )
+      } else {
+        setSubmitError("접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.")
+      }
     } finally {
       setIsSubmitting(false)
     }
