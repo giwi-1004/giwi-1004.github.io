@@ -44,12 +44,16 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || vars.NEXT_PUBLIC_SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY }}
 
       - name: Write Supabase runtime config
-        if: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL != '' || vars.NEXT_PUBLIC_SUPABASE_URL != '' || secrets.SUPABASE_URL != '' }}
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || vars.NEXT_PUBLIC_SUPABASE_URL || secrets.SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || vars.NEXT_PUBLIC_SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY }}
         run: |
-          node -e "const fs=require('fs');fs.writeFileSync('public/supabase-config.json',JSON.stringify({url:process.env.NEXT_PUBLIC_SUPABASE_URL,anonKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}));"
+          if [ -n "$NEXT_PUBLIC_SUPABASE_URL" ] && [ -n "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            node -e "const fs=require('fs');fs.writeFileSync('public/supabase-config.json',JSON.stringify({url:process.env.NEXT_PUBLIC_SUPABASE_URL,anonKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}));"
+            echo "Wrote public/supabase-config.json for runtime fallback."
+          else
+            echo "Skipping supabase-config.json (env not set)."
+          fi
 
       - name: Build static export
         env:
