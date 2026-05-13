@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CheckCircle2 } from "lucide-react"
+import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase/client"
 
 const inputFieldClass =
   "h-[52px] min-h-[52px] w-full rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 text-sm text-[#1E293B] shadow-none placeholder:text-[#94A3B8] focus-visible:border-[#EA580C] focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
@@ -37,7 +38,21 @@ export function LeadFormSection() {
     setIsSubmitting(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      if (!isSupabaseConfigured()) {
+        throw new Error("Supabase is not configured")
+      }
+
+      const supabase = getSupabaseClient()
+      const { error } = await supabase.from("lead_inquiries").insert({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        situation: formData.situation.trim() || null,
+      })
+
+      if (error) {
+        throw error
+      }
+
       setIsSubmitted(true)
     } catch {
       setSubmitError("접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.")
