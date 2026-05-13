@@ -65,10 +65,12 @@ export function LeadFormSection() {
         }
         if (
           error.code === "PGRST204" ||
-          error.message.includes("column")
+          error.code === "PGRST202" ||
+          error.message.includes("column") ||
+          error.message.includes("submit_lead_inquiry")
         ) {
           setSubmitError(
-            "테이블 컬럼명이 맞지 않습니다. Supabase SQL Editor에서 fix-lead-inquiries.sql을 실행해 주세요."
+            "데이터베이스 설정이 필요합니다. Supabase SQL Editor에서 supabase/install.sql을 실행해 주세요."
           )
           return
         }
