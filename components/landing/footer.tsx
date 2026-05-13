@@ -1,8 +1,8 @@
 export function Footer() {
   return (
-    <footer>
-      <div className="text-center text-xs leading-[1.8] text-white/35">
-        <strong className="mb-1.5 block text-[13px] text-white/55">
+    <footer className="!px-5 !py-8">
+      <div className="text-center text-xs leading-relaxed text-white/35">
+        <strong className="mb-1 block text-[13px] text-white/55">
           © 2026 소비자선임권 안내
         </strong>
         본 페이지는 소비자선임권 제도를 안내하기 위한 목적으로 제작되었습니다.

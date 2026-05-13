@@ -39,39 +39,39 @@ export function TimelineSection() {
   const stepsRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-[#faf7f2]">
+    <section className="bg-[#F8FAFC] !px-5 !py-14">
       <div ref={headerRef} className="reveal">
         <p className="ds-section-label">신청 절차</p>
-        <h2 className="ds-section-title break-keep">
+        <h2 className="text-2xl font-bold leading-snug break-keep">
           소비자선임권, 지금 바로 신청하세요
         </h2>
-        <p className="ds-section-desc break-keep">
+        <p className="mt-2 text-sm leading-relaxed text-[#64748B] break-keep">
           보험금 청구일로부터 3영업일 이내에만 신청 가능합니다
         </p>
       </div>
 
-      <div ref={stepsRef} className="reveal mt-8 flex flex-col">
+      <div ref={stepsRef} className="reveal mt-6 space-y-6">
         {STEPS.map((step, index) => {
           const isLast = index === STEPS.length - 1
           return (
-            <div key={step.title} className="flex gap-5 pb-7 last:pb-0">
-              <div className="flex shrink-0 flex-col items-center">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-sm font-bold text-white shadow-[0_4px_16px_rgba(234,88,12,0.15)]">
+            <div key={step.title} className="flex items-start gap-3">
+              <div className="flex shrink-0 flex-col items-center self-stretch">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EA580C] text-sm font-bold text-white">
                   {step.step}
                 </div>
                 {!isLast ? (
                   <div
-                    className="mt-1.5 w-px flex-1 bg-gradient-to-b from-[rgba(200,116,42,0.3)] to-[rgba(200,116,42,0.05)]"
+                    className="min-h-[52px] w-0 flex-1 border-l-2 border-dashed border-gray-200"
                     aria-hidden
                   />
                 ) : null}
               </div>
-              <div className="pt-2">
+              <div>
                 <span
                   className={cn(
                     "mb-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold tracking-[0.06em]",
                     step.tagHighlight
-                      ? "bg-[rgba(255,100,0,0.1)] text-[#e05a00]"
+                      ? "bg-[#EA580C] text-white"
                       : "bg-[rgba(200,116,42,0.1)] text-[#c8742a]"
                   )}
                 >
@@ -80,7 +80,7 @@ export function TimelineSection() {
                 <h3 className="text-base font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
                   {step.title}
                 </h3>
-                <p className="mt-1 text-[13px] leading-[1.6] text-[#4a4a5a] break-keep">
+                <p className="mt-1 text-sm leading-relaxed text-[#64748B] break-keep">
                   {step.description}
                 </p>
               </div>

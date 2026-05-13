@@ -30,7 +30,7 @@ const CARD_BOTTOM: {
 }
 
 const cardClass =
-  "rounded-[18px] border border-black/[0.06] bg-white p-[22px_18px] shadow-sm transition-[transform,box-shadow] duration-250 hover:-translate-y-[3px] hover:shadow-md"
+  "h-full rounded-2xl border border-gray-100 bg-white p-5 shadow-sm"
 
 function BenefitCard({
   Icon,
@@ -45,13 +45,15 @@ function BenefitCard({
 }) {
   return (
     <div className={cn(cardClass, className)}>
-      <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[rgba(200,116,42,0.12)] to-[rgba(212,164,76,0.08)]">
-        <Icon className="h-5 w-5 text-[#c8742a]" aria-hidden />
+      <div className="space-y-2">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFF7ED] p-3">
+          <Icon className="h-5 w-5 text-[#EA580C]" aria-hidden />
+        </div>
+        <h3 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
+          {title}
+        </h3>
+        <p className="text-sm leading-relaxed text-[#64748B] break-keep">{description}</p>
       </div>
-      <h3 className="mb-1.5 text-[15px] font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
-        {title}
-      </h3>
-      <p className="text-[13px] leading-[1.6] text-[#4a4a5a] break-keep">{description}</p>
     </div>
   )
 }
@@ -61,26 +63,32 @@ export function WhyConsumerRightsSection() {
   const gridRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-white">
+    <section className="bg-[#F8FAFC] !px-5 !py-14">
       <div ref={headerRef} className="reveal">
         <p className="ds-section-label">소비자선임권 혜택</p>
-        <h2 className="ds-section-title break-keep">
+        <h2 className="text-2xl font-bold leading-snug break-keep">
           소비자선임권, 이런점이 좋습니다
         </h2>
-        <p className="ds-section-desc break-keep">
+        <p className="mt-2 text-sm leading-relaxed text-[#64748B] break-keep">
           보험금 청구 전후 누구나 신청할 수 있습니다
         </p>
       </div>
 
-      <div ref={gridRef} className="reveal mt-8 grid grid-cols-2 gap-3">
+      <div ref={gridRef} className="reveal mt-6 grid grid-cols-2 items-stretch gap-3">
         {CARDS_TOP.map(({ Icon, title, description }) => (
-          <BenefitCard key={title} Icon={Icon} title={title} description={description} />
+          <BenefitCard
+            key={title}
+            Icon={Icon}
+            title={title}
+            description={description}
+            className="h-full"
+          />
         ))}
         <BenefitCard
           Icon={CARD_BOTTOM.Icon}
           title={CARD_BOTTOM.title}
           description={CARD_BOTTOM.description}
-          className="col-span-2"
+          className="col-span-2 h-full"
         />
       </div>
     </section>

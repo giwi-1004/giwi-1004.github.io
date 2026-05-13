@@ -15,31 +15,36 @@ export function QuickCheckSection() {
   const listRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-white">
+    <section className="bg-white !px-5 !py-14">
       <div ref={headerRef} className="reveal">
         <p className="ds-section-label">신청 대상</p>
-        <h2 className="ds-section-title break-keep">지금 어떤 상황이신가요?</h2>
-        <p className="ds-section-desc break-keep">
+        <h2 className="text-2xl font-bold leading-snug break-keep">지금 어떤 상황이신가요?</h2>
+        <p className="mt-2 text-sm leading-relaxed text-[#64748B] break-keep">
           아래 중 하나라도 해당되신다면
           <br />
           소비자선임권 사용이 가능합니다
         </p>
       </div>
 
-      <div ref={listRef} className="reveal mt-7 flex flex-col gap-2.5">
-        {CHECKLIST_ITEMS.map((text) => (
-          <div
-            key={text}
-            className="flex items-center gap-3.5 rounded-xl border border-gray-200 bg-[#F8FAFC] px-4.5 py-4 text-sm font-medium text-[#1a1a1e] break-keep"
-          >
-            <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-[#c8742a]">
-              <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} aria-hidden />
-            </span>
-            {text}
-          </div>
-        ))}
+      <div ref={listRef} className="reveal mt-6">
+        <div className="space-y-3">
+          {CHECKLIST_ITEMS.map((text) => (
+            <div
+              key={text}
+              className="flex items-center gap-3 rounded-xl border border-gray-100 bg-[#F8FAFC] px-4 py-3 text-sm font-medium text-[#1a1a1e] break-keep"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#c8742a]">
+                <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} aria-hidden />
+              </span>
+              {text}
+            </div>
+          ))}
+        </div>
 
-        <a href="#lead-form" className="ds-btn-secondary mt-6">
+        <a
+          href="#lead-form"
+          className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#EA580C] py-4 text-base font-bold text-white no-underline hover:bg-[#C2410C]"
+        >
           소비자선임권 상담 신청하기
           <svg
             width="16"
