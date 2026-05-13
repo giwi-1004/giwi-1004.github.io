@@ -1,56 +1,62 @@
-import { CheckCircle2 } from "lucide-react"
+"use client"
 
-const CREDENTIAL_LINES = [
-  "국가공인 신체손해사정사",
-  "손해사정법인 태산 소속",
-  "보험사와 무관한 독립 손해사정사",
+import { Building2, Landmark, Scale } from "lucide-react"
+import { useReveal } from "@/lib/hooks/use-reveal"
+
+const CREDENTIALS = [
+  { Icon: Landmark, text: "국가공인 신체손해사정사" },
+  { Icon: Building2, text: "손해사정법인 태산 소속" },
+  { Icon: Scale, text: "보험사와 무관한 독립 손해사정사" },
 ] as const
 
-const highlightBoxClass =
-  "w-full rounded-2xl border-l-4 border-l-[#EA580C] bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-
 export function ExpertSection() {
-  return (
-    <section className="overflow-x-hidden border-t border-gray-100 bg-white px-5 py-12">
-      <div className="flex flex-col items-center">
-        <span className="mb-4 inline-flex rounded-full bg-[#FFF7ED] px-3 py-1 text-sm font-semibold text-[#EA580C]">
-          담당 손해사정사
-        </span>
+  const headerRef = useReveal<HTMLDivElement>()
+  const cardRef = useReveal<HTMLDivElement>()
 
-        <div className="mb-4 shrink-0">
+  return (
+    <section className="bg-[#1a1a2e] text-white">
+      <div ref={headerRef} className="reveal">
+        <p className="ds-section-label text-[#d4a44c]">담당 손해사정사</p>
+        <h2 className="ds-section-title text-white break-keep">오하연 손해사정사</h2>
+      </div>
+
+      <div
+        ref={cardRef}
+        className="reveal mt-7 rounded-[22px] border border-white/10 bg-white/5 p-7 backdrop-blur-[10px]"
+      >
+        <div className="mb-5.5 flex items-center gap-4.5">
           <img
             src="/ohayeon-profile.png"
             alt="오하연 손해사정사 프로필"
-            width={180}
-            height={180}
-            className="h-[180px] w-[180px] rounded-full border-4 border-solid border-[#EA580C] object-cover object-top bg-[#E2E8F0]"
+            width={72}
+            height={72}
+            className="h-[72px] w-[72px] shrink-0 rounded-full border-2 border-[rgba(212,164,76,0.4)] object-cover object-top"
           />
+          <div>
+            <p className="ds-serif text-xl font-bold tracking-[-0.01em] text-white">
+              오하연
+            </p>
+            <p className="mt-1 text-xs tracking-[0.03em] text-white/45">
+              손해사정법인 태산 소속
+            </p>
+          </div>
         </div>
 
-        <h2 className="mb-4 w-full text-center text-xl font-bold text-[#1E293B] break-keep">
-          오하연 손해사정사
-        </h2>
-
-        <ul className="mb-4 flex w-full flex-col gap-5">
-          {CREDENTIAL_LINES.map((line) => (
-            <li key={line} className="flex items-start gap-2">
-              <CheckCircle2
-                className="mt-0.5 h-[22px] w-[22px] shrink-0 text-[#EA580C]"
-                aria-hidden
-              />
-              <span className="text-sm leading-relaxed text-[#1E293B] break-keep">
-                {line}
+        <div className="flex flex-col gap-2.5">
+          {CREDENTIALS.map(({ Icon, text }) => (
+            <div key={text} className="flex items-center gap-3 text-sm text-white/80">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[rgba(200,116,42,0.25)]">
+                <Icon className="h-3.5 w-3.5 text-[#e8913a]" aria-hidden />
               </span>
-            </li>
+              <span className="break-keep">{text}</span>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        <div className={highlightBoxClass}>
-          <p className="text-sm leading-relaxed text-[#1E293B] break-keep">
-            보험사도 가입자도 아닌,
-            <br />
-            오직 사실에 근거해 객관적으로 사정서를 작성합니다
-          </p>
+        <div className="mt-5.5 rounded-r-xl border-l-[3px] border-[#c8742a] bg-[rgba(200,116,42,0.1)] px-5 py-4.5 text-sm leading-[1.7] text-white/75 italic break-keep">
+          보험사도 가입자도 아닌,
+          <br />
+          오직 사실에 근거해 객관적으로 사정서를 작성합니다
         </div>
       </div>
     </section>

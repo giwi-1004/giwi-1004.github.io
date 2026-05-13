@@ -1,4 +1,7 @@
-import { CheckCircle2, ArrowRight } from "lucide-react"
+"use client"
+
+import { Check } from "lucide-react"
+import { useReveal } from "@/lib/hooks/use-reveal"
 
 const CHECKLIST_ITEMS = [
   "보험금 청구를 준비 중입니다",
@@ -7,40 +10,51 @@ const CHECKLIST_ITEMS = [
   "입원 치료 중입니다",
 ] as const
 
-const checklistItemClass =
-  "flex items-start gap-4 rounded-2xl border border-solid border-[#F1F5F9] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-
 export function QuickCheckSection() {
-  return (
-    <section className="bg-[#F8FAFC] px-5 py-12 !pb-6">
-      <h2 className="ds-h2 mb-2 text-balance break-keep">
-        지금 어떤 상황이신가요?
-      </h2>
-      <p className="ds-caption mb-6 break-keep">
-        아래 중 하나라도 해당되신다면
-        <br />
-        소비자선임권 사용이 가능합니다
-      </p>
+  const headerRef = useReveal<HTMLDivElement>()
+  const listRef = useReveal<HTMLDivElement>()
 
-      <div className="flex flex-col ds-gap">
+  return (
+    <section className="bg-white">
+      <div ref={headerRef} className="reveal">
+        <p className="ds-section-label">신청 대상</p>
+        <h2 className="ds-section-title break-keep">지금 어떤 상황이신가요?</h2>
+        <p className="ds-section-desc break-keep">
+          아래 중 하나라도 해당되신다면
+          <br />
+          소비자선임권 사용이 가능합니다
+        </p>
+      </div>
+
+      <div ref={listRef} className="reveal mt-7 flex flex-col gap-2.5">
         {CHECKLIST_ITEMS.map((text) => (
-          <div key={text} className={checklistItemClass}>
-            <CheckCircle2
-              className="mt-0.5 h-[22px] w-[22px] shrink-0 text-[#EA580C]"
-              aria-hidden
-            />
-            <span className="text-sm leading-relaxed text-[#1E293B] break-keep">
-              {text}
+          <div
+            key={text}
+            className="flex items-center gap-3.5 rounded-xl border border-[rgba(200,116,42,0.15)] bg-[#faf7f2] px-4.5 py-4 text-sm font-medium text-[#1a1a1e] transition-[background,border-color] duration-200 hover:border-[rgba(200,116,42,0.3)] hover:bg-[#fff5eb] break-keep"
+          >
+            <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-[#c8742a]">
+              <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} aria-hidden />
             </span>
+            {text}
           </div>
         ))}
 
-        <a
-          href="#lead-form"
-          className="ds-btn-cta ds-btn-cta-navy gap-2 no-underline"
-        >
+        <a href="#lead-form" className="ds-btn-secondary mt-6">
           소비자선임권 상담 신청하기
-          <ArrowRight className="h-5 w-5 shrink-0" aria-hidden />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </a>
       </div>
     </section>

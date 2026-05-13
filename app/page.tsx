@@ -9,9 +9,10 @@ import { Footer } from "@/components/landing/footer"
 
 export default function LandingPage() {
   return (
-    <main className="ds-landing min-h-screen max-w-lg mx-auto bg-background overflow-x-hidden">
+    <main className="ds-landing min-h-screen max-w-lg mx-auto bg-[#fffdf9] overflow-x-hidden">
       <HeroSection />
       <WhyConsumerRightsSection />
+      <div className="ds-divider" aria-hidden />
       <QuickCheckSection />
       <TimelineSection />
       <ExpertSection />

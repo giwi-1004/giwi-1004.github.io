@@ -1,65 +1,60 @@
 "use client"
 
-import { Shield, CheckCircle, ArrowRight, BadgeCheck, Clock } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white !pb-6">
-      <div className="flex flex-col gap-5">
-        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#EA580C]">
-          <Shield className="h-4 w-4 shrink-0 text-[#EA580C]" aria-hidden />
+    <section className="relative flex flex-col justify-center overflow-hidden bg-[#1a1a2e]">
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 110% 20%, rgba(200,116,42,0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at -10% 80%, rgba(212,164,76,0.10) 0%, transparent 55%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        aria-hidden
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <div className="relative z-10 flex flex-col">
+        <span className="hero-animate mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(200,116,42,0.3)] bg-[rgba(200,116,42,0.15)] px-3.5 py-1.5 text-[11px] font-medium tracking-[0.12em] text-[#e8913a] uppercase">
+          <span className="hero-badge-dot h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8913a]" />
           실손보험 소비자선임권
         </span>
 
-        <h1 className="ds-h1 text-balance break-keep">
-          <span className="text-[#1E293B]">보험금 청구 전후,</span>{" "}
-          <span className="text-[#EA580C]">당신에게 권리가 있습니다</span>
+        <h1 className="hero-animate hero-animate-delay-1 ds-serif text-[clamp(1.875rem,8vw,2.75rem)] leading-[1.25] font-bold tracking-[-0.02em] text-white text-balance break-keep">
+          보험금 청구 전후,{" "}
+          <span className="text-[#d4a44c]">당신에게 권리가 있습니다</span>
         </h1>
 
-        <div className="flex gap-5 rounded-2xl border border-solid border-[#E2E8F0] border-l-4 border-l-[#EA580C] bg-[#F8FAFC] p-5">
-          <CheckCircle
-            className="mt-0.5 h-5 w-5 shrink-0 text-[#EA580C]"
-            aria-hidden
-          />
-          <p className="ds-body break-keep">
-            내가 지정한 손해사정사가 보험사와 무관하게 독립적으로 조사하고 사정서를
-            작성합니다
-          </p>
-        </div>
+        <p className="hero-animate hero-animate-delay-2 mt-4.5 text-[15px] leading-[1.7] font-light text-white/55 break-keep">
+          내가 지정한 손해사정사가 보험사와 무관하게 독립적으로 조사하고 사정서를
+          작성합니다
+        </p>
 
-        <div className="ds-gap grid grid-cols-3">
-          <div className="ds-hero-stat flex flex-col items-center px-2 py-4 text-center">
-            <BadgeCheck
-              className="mb-1 h-5 w-5 shrink-0 text-[#EA580C]"
-              aria-hidden
-            />
-            <p className="text-2xl font-bold text-[#EA580C]">0원</p>
-            <p className="ds-caption mt-1">수수료</p>
+        <div className="hero-animate hero-animate-delay-3 my-9 flex">
+          <div className="flex-1 rounded-l-[14px] border border-white/[0.07] py-5 text-center">
+            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">0원</p>
+            <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">수수료</p>
           </div>
-          <div className="ds-hero-stat flex flex-col items-center px-2 py-4 text-center">
-            <Clock
-              className="mb-1 h-5 w-5 shrink-0 text-[#EA580C]"
-              aria-hidden
-            />
-            <p className="text-2xl font-bold text-[#EA580C]">3일</p>
-            <p className="ds-caption mt-1">신청 기한</p>
+          <div className="flex-1 border border-l-0 border-white/[0.07] py-5 text-center">
+            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">3일</p>
+            <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">신청 기한</p>
           </div>
-          <div className="ds-hero-stat flex flex-col items-center px-2 py-4 text-center">
-            <Shield
-              className="mb-1 h-5 w-5 shrink-0 text-[#EA580C]"
-              aria-hidden
-            />
-            <p className="text-2xl font-bold text-[#EA580C]">독립</p>
-            <p className="ds-caption mt-1">전문가</p>
+          <div className="flex-1 rounded-r-[14px] border border-l-0 border-white/[0.07] py-5 text-center">
+            <p className="ds-serif text-[28px] leading-none font-bold text-[#d4a44c]">독립</p>
+            <p className="mt-1.5 text-[11px] tracking-[0.05em] text-white/40">전문가</p>
           </div>
-        </div>
+</div>
 
-        <a
-          href="#lead-form"
-          className="ds-btn-cta ds-btn-cta-navy gap-2 no-underline"
-        >
+        <a href="#lead-form" className="hero-animate hero-animate-delay-4 ds-btn-primary">
           소비자선임권 가능 여부 확인하기
-          <ArrowRight className="h-5 w-5 shrink-0" aria-hidden />
+          <ArrowRight className="h-[18px] w-[18px] shrink-0" aria-hidden />
         </a>
       </div>
     </section>

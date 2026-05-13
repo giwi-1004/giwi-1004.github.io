@@ -5,8 +5,8 @@
 
 :root {
   /* Premium Finance Landing Page Colors */
-  --background: #F8FAFC;
-  --foreground: #0F172A;
+  --background: #fffdf9;
+  --foreground: #1a1a1e;
   --card: #FFFFFF;
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
@@ -45,16 +45,23 @@
   --highlight-orange: #F59E0B;
   --warning-red: #DC2626;
 
-  /* Landing design system */
-  --ds-text: #1e293b;
-  --ds-text-muted: #64748b;
-  --ds-text-hint: #94a3b8;
-  --ds-card-border: #f1f5f9;
-  --ds-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --ds-shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --ds-shadow-btn-navy: 0 4px 12px rgba(30, 41, 59, 0.3);
-  --ds-shadow-btn-orange: 0 4px 12px rgba(234, 88, 12, 0.3);
-  --ds-shadow-hero-stat: 0 2px 8px rgba(234, 88, 12, 0.12);
+  /* Landing design system — premium warm palette */
+  --lp-primary: #1a1a2e;
+  --lp-accent: #c8742a;
+  --lp-accent-light: #e8913a;
+  --lp-gold: #d4a44c;
+  --lp-cream: #faf7f2;
+  --lp-warm-white: #fffdf9;
+  --ds-text: #1a1a1e;
+  --ds-text-muted: #4a4a5a;
+  --ds-text-hint: #8a8a9a;
+  --ds-card-border: rgba(0, 0, 0, 0.06);
+  --ds-shadow-card: 0 2px 16px rgba(0, 0, 0, 0.04);
+  --ds-shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.09);
+  --ds-shadow-premium: 0 20px 60px rgba(26, 26, 46, 0.08);
+  --ds-shadow-btn-accent: 0 8px 24px rgba(200, 116, 42, 0.35);
+  --ds-shadow-btn-primary: 0 8px 28px rgba(200, 116, 42, 0.3);
+  --lp-border-accent: rgba(200, 116, 42, 0.15);
 }
 
 .dark {
@@ -150,16 +157,102 @@
   }
 
   main.ds-landing > section {
-    @apply border-t border-gray-100 px-5 py-12;
+    @apply border-t-0 px-7 py-16;
   }
 
   main.ds-landing > section:first-child {
-    @apply border-t-0;
+    @apply min-h-svh px-7 pb-15 pt-20;
   }
 
   main.ds-landing > footer {
-    @apply border-t border-gray-100 px-5 py-8;
-    background: #1e293b;
+    @apply border-t-0 px-7 py-9;
+    background: #111118;
+  }
+
+  .ds-divider {
+    height: 1px;
+    margin: 0 1.75rem;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(200, 116, 42, 0.2),
+      transparent
+    );
+  }
+
+  .ds-section-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lp-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .ds-section-title {
+    font-family: var(--font-serif), 'Noto Serif KR', serif;
+    font-size: clamp(1.375rem, 5.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--lp-primary);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .ds-section-desc {
+    font-size: 0.875rem;
+    color: var(--ds-text-muted);
+    line-height: 1.75;
+    margin-top: 0.625rem;
+  }
+
+  .ds-serif {
+    font-family: var(--font-serif), 'Noto Serif KR', serif;
+  }
+
+  .ds-btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 1.125rem 1.5rem;
+    background: var(--lp-accent);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0.875rem;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    box-shadow: var(--ds-shadow-btn-accent);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .ds-btn-primary:hover {
+    background: var(--lp-accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(200, 116, 42, 0.45);
+  }
+
+  .ds-btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 1.0625rem 1.5rem;
+    background: var(--lp-primary);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    border-radius: 0.875rem;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .ds-btn-secondary:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
   }
 
   .ds-h1 {
@@ -324,5 +417,65 @@
 
   .ds-btn-cta-kakao:hover {
     background: #f8e44b;
+  }
+
+  .fade-up,
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .fade-up.visible,
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.4);
+    }
+  }
+
+  .hero-animate {
+    animation: hero-fade-up 0.8s ease both;
+  }
+
+  .hero-animate-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .hero-animate-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .hero-animate-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .hero-animate-delay-4 {
+    animation-delay: 0.4s;
+  }
+
+  .hero-badge-dot {
+    animation: hero-pulse 2s ease infinite;
   }
 }
