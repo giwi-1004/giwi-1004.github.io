@@ -10,6 +10,9 @@ __v0_jsx-dev-runtime.ts
 .env
 .env*.local
 
+# 런타임 폴백용 (빌드 시 GitHub Secrets로 자동 생성되거나, 로컬에서 수동 생성)
+public/supabase-config.json
+
 # Common ignores
 node_modules
 .next/
