@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CheckCircle2 } from "lucide-react"
 
 const inputFieldClass =
-  "h-11 min-h-11 rounded-lg border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 py-2 text-sm text-[#1E293B] placeholder:text-[#64748B] focus-visible:border-[#EA580C] focus-visible:ring-1 focus-visible:ring-[#EA580C] focus-visible:outline-none"
+  "h-[52px] min-h-[52px] w-full rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 text-sm text-[#1E293B] shadow-none placeholder:text-[#94A3B8] focus-visible:border-[#EA580C] focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
 
 const textareaFieldClass =
-  "min-h-[120px] w-full resize-none rounded-lg border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 py-2 text-sm text-[#1E293B] placeholder:text-[#64748B] focus-visible:border-[#EA580C] focus-visible:ring-1 focus-visible:ring-[#EA580C] focus-visible:outline-none"
+  "h-[120px] min-h-[120px] max-h-[120px] w-full resize-none rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 py-2 text-sm text-[#1E293B] shadow-none placeholder:text-[#94A3B8] focus-visible:border-[#EA580C] focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0"
 
 export function LeadFormSection() {
   const [formData, setFormData] = useState({
@@ -48,18 +48,15 @@ export function LeadFormSection() {
 
   if (isSubmitted) {
     return (
-      <section
-        id="lead-form"
-        className="overflow-x-hidden bg-[#FFF7ED] px-4 py-8"
-      >
+      <section id="lead-form" className="overflow-x-hidden bg-[#FFF7ED] px-5 py-12">
         <div className="text-center">
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#EA580C]/10">
             <CheckCircle2 className="h-10 w-10 text-[#EA580C]" />
           </div>
-          <h2 className="mb-3 text-2xl font-bold leading-tight text-[#1E293B] break-keep">
+          <h2 className="ds-h2 mb-3 break-keep">
             확인 요청이 완료되었습니다
           </h2>
-          <p className="text-sm leading-relaxed text-[#64748B] break-keep">
+          <p className="ds-caption break-keep">
             입력하신 연락처로
             <br />
             빠른 시간 내에 연락드리겠습니다.
@@ -73,15 +70,15 @@ export function LeadFormSection() {
   }
 
   return (
-    <section id="lead-form" className="overflow-x-hidden bg-[#FFF7ED] px-4 py-8">
-      <h2 className="mb-2 text-xl font-bold text-[#1E293B] text-balance break-keep">
+    <section id="lead-form" className="overflow-x-hidden bg-[#FFF7ED] px-5 py-12">
+      <h2 className="ds-h2 mb-2 text-balance break-keep">
         소비자선임권 상담 신청
       </h2>
-      <p className="mb-6 text-sm text-[#64748B] break-keep">
+      <p className="ds-caption mb-6 break-keep">
         신청 접수 후 순차적으로 연락드립니다
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label
             htmlFor="name"
@@ -137,15 +134,15 @@ export function LeadFormSection() {
             onChange={(e) =>
               setFormData({ ...formData, situation: e.target.value })
             }
-            rows={5}
             className={textareaFieldClass}
           />
         </div>
 
         <div
-          className={`rounded-xl border border-solid px-4 py-3.5 transition-colors ${
-            isConsentChecked ? "border-[#EA580C]/40" : "border-[#E2E8F0]"
-          } bg-[#FFFFFF]`}
+          className={cn(
+            "ds-card transition-colors",
+            isConsentChecked ? "border-[#EA580C]/40" : ""
+          )}
         >
           <label className="flex w-full cursor-pointer items-start gap-2.5">
             <Checkbox
@@ -170,7 +167,7 @@ export function LeadFormSection() {
           </button>
 
           {isTermsOpen && (
-            <div className="mt-3 rounded-lg border border-[#E2E8F0] bg-white p-3 text-xs leading-relaxed whitespace-pre-line text-[#334155]">
+            <div className="ds-caption mt-3 rounded-2xl border border-[#E2E8F0] bg-white p-5 leading-relaxed whitespace-pre-line text-[#334155]">
               개인정보 수집·이용·제공 조회 동의서
 
               오하연 손해사정사는
@@ -233,7 +230,7 @@ export function LeadFormSection() {
           )}
         </div>
 
-        <Button
+        <button
           type="submit"
           disabled={
             isSubmitting ||
@@ -241,17 +238,17 @@ export function LeadFormSection() {
             !formData.phone ||
             !isConsentChecked
           }
-          className="mt-6 h-12 min-h-12 w-full rounded-xl bg-[#EA580C] px-4 text-base font-bold text-white shadow-sm hover:bg-[#C2410C] disabled:bg-[#CBD5E1] disabled:text-white/80"
+          className="ds-btn-cta ds-btn-cta-orange mt-6 disabled:pointer-events-none disabled:opacity-80"
         >
           {isSubmitting ? "요청 중..." : "소비자선임권 상담 신청하기"}
-        </Button>
+        </button>
 
         {submitError ? (
           <p className="mt-3 text-sm font-medium text-[#DC2626]">{submitError}</p>
         ) : null}
       </form>
 
-      <p className="mt-6 text-center text-sm text-[#64748B]">
+      <p className="ds-caption mt-6 text-center">
         입력하신 정보는 상담 목적으로만 사용됩니다
       </p>
     </section>

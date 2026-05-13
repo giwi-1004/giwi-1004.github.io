@@ -1,5 +1,4 @@
 import { CheckCircle2, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 const CHECKLIST_ITEMS = [
   "보험금 청구를 준비 중입니다",
@@ -8,26 +7,26 @@ const CHECKLIST_ITEMS = [
   "입원 치료 중입니다",
 ] as const
 
+const checklistItemClass =
+  "flex items-start gap-4 rounded-2xl border border-solid border-[#F1F5F9] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+
 export function QuickCheckSection() {
   return (
-    <section className="bg-[#F8FAFC] px-4 pt-8 pb-4">
-      <h2 className="mb-2 text-xl font-bold text-[#1E293B] text-balance break-keep">
+    <section className="bg-[#F8FAFC] px-5 py-12">
+      <h2 className="ds-h2 mb-2 text-balance break-keep">
         지금 어떤 상황이신가요?
       </h2>
-      <p className="mb-6 text-sm text-[#64748B] break-keep">
+      <p className="ds-caption mb-6 break-keep">
         아래 중 하나라도 해당되신다면
         <br />
         소비자선임권 사용이 가능합니다
       </p>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col ds-gap">
         {CHECKLIST_ITEMS.map((text) => (
-          <div
-            key={text}
-            className="flex items-start gap-3 rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] p-4"
-          >
+          <div key={text} className={checklistItemClass}>
             <CheckCircle2
-              className="mt-0.5 h-5 w-5 shrink-0 text-[#EA580C]"
+              className="mt-0.5 h-[22px] w-[22px] shrink-0 text-[#EA580C]"
               aria-hidden
             />
             <span className="text-sm leading-relaxed text-[#1E293B] break-keep">
@@ -35,20 +34,15 @@ export function QuickCheckSection() {
             </span>
           </div>
         ))}
-      </div>
 
-      <Button
-        asChild
-        className="mt-6 h-12 min-h-12 w-full rounded-xl bg-[#1E293B] px-4 text-base font-bold text-white hover:bg-[#0F172A] [&_svg]:text-white"
-      >
         <a
           href="#lead-form"
-          className="inline-flex w-full items-center justify-center gap-2"
+          className="ds-btn-cta ds-btn-cta-navy gap-2 no-underline"
         >
           소비자선임권 상담 신청하기
-          <ArrowRight className="h-5 w-5 shrink-0 text-white" />
+          <ArrowRight className="h-5 w-5 shrink-0" aria-hidden />
         </a>
-      </Button>
+      </div>
     </section>
   )
 }
