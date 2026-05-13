@@ -6,11 +6,17 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CheckCircle2 } from "lucide-react"
 
+const inputFieldClass =
+  "h-11 min-h-11 rounded-lg border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 py-2 text-sm text-[#1E293B] placeholder:text-[#64748B] focus-visible:border-[#EA580C] focus-visible:ring-1 focus-visible:ring-[#EA580C] focus-visible:outline-none"
+
+const textareaFieldClass =
+  "min-h-[120px] w-full resize-none rounded-lg border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 py-2 text-sm text-[#1E293B] placeholder:text-[#64748B] focus-visible:border-[#EA580C] focus-visible:ring-1 focus-visible:ring-[#EA580C] focus-visible:outline-none"
+
 export function LeadFormSection() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    situation: ""
+    situation: "",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -31,10 +37,9 @@ export function LeadFormSection() {
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsSubmitted(true)
-    } catch (error) {
+    } catch {
       setSubmitError("접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.")
     } finally {
       setIsSubmitting(false)
@@ -43,19 +48,23 @@ export function LeadFormSection() {
 
   if (isSubmitted) {
     return (
-      <section id="lead-form" className="px-6 py-12 bg-white overflow-x-hidden">
+      <section
+        id="lead-form"
+        className="overflow-x-hidden bg-[#FFF7ED] px-4 py-8"
+      >
         <div className="text-center">
-          <div className="w-20 h-20 mx-auto mb-6 bg-[#2563EB]/10 rounded-full flex items-center justify-center">
-            <CheckCircle2 className="w-10 h-10 text-[#2563EB]" />
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#EA580C]/10">
+            <CheckCircle2 className="h-10 w-10 text-[#EA580C]" />
           </div>
-          <h2 className="text-[30px] font-extrabold text-[#0F172A] mb-3 leading-[1.24]">
+          <h2 className="mb-3 text-2xl font-bold leading-tight text-[#1E293B] break-keep">
             확인 요청이 완료되었습니다
           </h2>
-          <p className="text-[#64748B] text-[17px] leading-[1.5]">
-            입력하신 연락처로<br />
+          <p className="text-sm leading-relaxed text-[#64748B] break-keep">
+            입력하신 연락처로
+            <br />
             빠른 시간 내에 연락드리겠습니다.
           </p>
-          <p className="text-[#2563EB] text-sm font-semibold mt-3">
+          <p className="mt-3 text-sm font-semibold text-[#EA580C]">
             상담 신청이 정상 접수되었습니다.
           </p>
         </div>
@@ -64,20 +73,20 @@ export function LeadFormSection() {
   }
 
   return (
-    <section id="lead-form" className="px-6 py-12 bg-white overflow-x-hidden">
-      {/* Section Title */}
-      <h2 className="text-[30px] font-extrabold text-[#0F172A] mb-2 text-balance leading-[1.24]">
-        지금 확인 요청하기
+    <section id="lead-form" className="overflow-x-hidden bg-[#FFF7ED] px-4 py-8">
+      <h2 className="mb-2 text-xl font-bold text-[#1E293B] text-balance break-keep">
+        소비자선임권 상담 신청
       </h2>
-      <p className="text-[17px] text-[#64748B] leading-[1.5] mb-7">
-        상담 신청접수 후 순차적으로 연락드립니다
+      <p className="mb-6 text-sm text-[#64748B] break-keep">
+        신청 접수 후 순차적으로 연락드립니다
       </p>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-[#0F172A] mb-2">
+          <label
+            htmlFor="name"
+            className="mb-2 block text-sm font-medium text-[#1E293B]"
+          >
             이름
           </label>
           <Input
@@ -87,13 +96,15 @@ export function LeadFormSection() {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
-            className="h-16 rounded-[24px] border-[#E2E8F0] bg-[#F8FAFC] text-base placeholder:text-[#64748B] focus:border-[#2563EB] focus:ring-[#2563EB]"
+            className={inputFieldClass}
           />
         </div>
 
-        {/* Phone Field */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-[#0F172A] mb-2">
+          <label
+            htmlFor="phone"
+            className="mb-2 block text-sm font-medium text-[#1E293B]"
+          >
             연락처
           </label>
           <Input
@@ -101,40 +112,50 @@ export function LeadFormSection() {
             type="tel"
             placeholder="010-0000-0000"
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: formatPhoneNumber(e.target.value) })}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                phone: formatPhoneNumber(e.target.value),
+              })
+            }
             required
-            className="h-16 rounded-[24px] border-[#E2E8F0] bg-[#F8FAFC] text-base placeholder:text-[#64748B] focus:border-[#2563EB] focus:ring-[#2563EB]"
+            className={inputFieldClass}
           />
         </div>
 
-        {/* Situation Field */}
         <div>
-          <label htmlFor="situation" className="block text-sm font-medium text-[#0F172A] mb-2">
-            현재 상황 <span className="text-[#64748B] font-normal">(선택)</span>
+          <label
+            htmlFor="situation"
+            className="mb-2 block text-sm font-medium text-[#1E293B]"
+          >
+            현재 상황
           </label>
           <textarea
             id="situation"
-            placeholder="보험사 조사 연락을 받은 상황 등"
+            placeholder="보험금 청구 준비 중, 보험사 조사 연락을 받은 상황 등"
             value={formData.situation}
-            onChange={(e) => setFormData({ ...formData, situation: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, situation: e.target.value })
+            }
             rows={5}
-            className="w-full min-h-[140px] rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] p-4 text-base placeholder:text-[#64748B] focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:outline-none resize-none"
+            className={textareaFieldClass}
           />
         </div>
 
-        {/* Consent */}
         <div
-          className={`rounded-xl border bg-[#F8FAFC] px-4 py-3.5 transition-colors ${
-            isConsentChecked ? "border-[#2563EB]/40" : "border-[#E2E8F0]"
-          }`}
+          className={`rounded-xl border border-solid px-4 py-3.5 transition-colors ${
+            isConsentChecked ? "border-[#EA580C]/40" : "border-[#E2E8F0]"
+          } bg-[#FFFFFF]`}
         >
-          <label className="flex items-start gap-2.5 cursor-pointer w-full">
+          <label className="flex w-full cursor-pointer items-start gap-2.5">
             <Checkbox
               checked={isConsentChecked}
-              onCheckedChange={(checked) => setIsConsentChecked(checked === true)}
-              className="mt-0.5 data-[state=checked]:bg-[#2563EB] data-[state=checked]:border-[#2563EB]"
+              onCheckedChange={(checked) =>
+                setIsConsentChecked(checked === true)
+              }
+              className="mt-0.5 data-[state=checked]:border-[#EA580C] data-[state=checked]:bg-[#EA580C]"
             />
-            <span className="text-sm font-medium text-[#0F172A]">
+            <span className="text-sm font-medium text-[#1E293B]">
               (필수) 개인정보 수집·이용에 동의합니다
             </span>
           </label>
@@ -143,13 +164,13 @@ export function LeadFormSection() {
             type="button"
             onMouseDown={(e) => e.stopPropagation()}
             onClick={() => setIsTermsOpen((prev) => !prev)}
-            className="mt-2 text-xs text-[#2563EB] underline underline-offset-2"
+            className="mt-2 text-xs text-[#EA580C] underline underline-offset-2"
           >
             전체 동의 내용 보기
           </button>
 
           {isTermsOpen && (
-            <div className="mt-3 rounded-lg border border-[#E2E8F0] bg-white p-3 text-xs leading-relaxed text-[#334155] whitespace-pre-line">
+            <div className="mt-3 rounded-lg border border-[#E2E8F0] bg-white p-3 text-xs leading-relaxed whitespace-pre-line text-[#334155]">
               개인정보 수집·이용·제공 조회 동의서
 
               오하연 손해사정사는
@@ -212,25 +233,26 @@ export function LeadFormSection() {
           )}
         </div>
 
-        {/* Submit Button */}
-        <Button 
+        <Button
           type="submit"
-          disabled={isSubmitting || !formData.name || !formData.phone || !isConsentChecked}
-          className="w-full h-16 px-5 text-[18px] font-bold bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-[#CBD5E1] disabled:text-white/80 text-white rounded-[22px] shadow-sm shadow-[#2563EB]/20 mt-8"
+          disabled={
+            isSubmitting ||
+            !formData.name ||
+            !formData.phone ||
+            !isConsentChecked
+          }
+          className="mt-6 h-12 min-h-12 w-full rounded-xl bg-[#EA580C] px-4 text-base font-bold text-white shadow-sm hover:bg-[#C2410C] disabled:bg-[#CBD5E1] disabled:text-white/80"
         >
-          {isSubmitting ? "요청 중..." : "소비자선임 가능 여부 확인하기"}
+          {isSubmitting ? "요청 중..." : "소비자선임권 상담 신청하기"}
         </Button>
 
-        {submitError && (
-          <p className="text-sm text-[#DC2626] font-medium mt-3">
-            {submitError}
-          </p>
-        )}
+        {submitError ? (
+          <p className="mt-3 text-sm font-medium text-[#DC2626]">{submitError}</p>
+        ) : null}
       </form>
 
-      {/* Privacy Note */}
-      <p className="text-xs text-[#94A3B8] text-center mt-8">
-        입력하신 정보는 상담 목적으로만 사용됩니다.
+      <p className="mt-6 text-center text-sm text-[#64748B]">
+        입력하신 정보는 상담 목적으로만 사용됩니다
       </p>
     </section>
   )

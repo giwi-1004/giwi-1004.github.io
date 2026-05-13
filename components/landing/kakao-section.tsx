@@ -1,42 +1,38 @@
-"use client"
-
 import { MessageCircle } from "lucide-react"
 
 export function KakaoSection() {
   return (
-    <section className="px-6 py-12 bg-[#FFFDF2] overflow-x-hidden">
-      <div className="bg-[#FFF9E8] border border-[#E5E7EB] rounded-3xl p-5">
-        <div className="h-1.5 w-16 mx-auto mb-4 rounded-full bg-[#FEE500]/55" />
-        <h2 className="text-[30px] font-extrabold text-[#0F172A] text-center leading-[1.24] mb-4">
-          카카오톡으로<br />
-          빠른 문의 가능
-        </h2>
+    <section className="overflow-x-hidden bg-[#F8FAFC] px-4 py-8">
+      <h2 className="mb-2 text-center text-xl font-bold text-[#1E293B] break-keep">
+        카카오톡으로 문의하기
+      </h2>
+      <p className="mb-6 text-center text-sm leading-relaxed text-[#64748B] break-keep">
+        실손 청구일, 보험사 조사 여부를
+        <br />
+        함께 남겨주시면 빠르게 확인해드립니다
+      </p>
 
-        <div className="w-full flex justify-center mb-5">
-          <div className="w-[189px] h-[189px] rounded-2xl border border-[#0F172A]/12 overflow-hidden bg-white">
-            <img
-              src="/kakao-qr.png"
-              alt="카카오톡 문의 QR 코드"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      <div className="mb-6 flex justify-center">
+        <div className="rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] p-3">
+          <img
+            src="/kakao-qr.png"
+            alt="카카오톡 문의 QR 코드"
+            width={160}
+            height={160}
+            className="h-40 w-40 rounded-lg object-cover"
+          />
         </div>
-
-        <p className="text-[17px] text-[#334155] text-center leading-[1.5] mb-7">
-          실손보험 청구일과<br />
-          보험사 조사 여부를 남겨주세요.
-        </p>
-
-        <a
-          href="https://open.kakao.com/o/sKMhvtoi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full h-16 bg-[#FEE500] hover:bg-[#F8E44B] rounded-[22px] font-bold text-[#111827] transition-colors"
-        >
-          <MessageCircle className="w-5.5 h-5.5" />
-          카카오톡 문의하기
-        </a>
       </div>
+
+      <a
+        href="https://open.kakao.com/o/sKMhvtoi"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex h-12 min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#FEE500] text-base font-bold text-[#1E293B] transition-colors hover:bg-[#F8E44B]"
+      >
+        <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
+        카카오톡 문의하기
+      </a>
     </section>
   )
 }
