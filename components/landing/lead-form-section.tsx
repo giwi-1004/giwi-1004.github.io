@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CheckCircle2 } from "lucide-react"
 import { getSupabaseClient } from "@/lib/supabase/client"
+import { submitLeadInquiry } from "@/lib/supabase/submit-lead"
 
 const inputFieldClass =
   "h-[52px] min-h-[52px] w-full rounded-xl border border-solid border-[#E2E8F0] bg-[#FFFFFF] px-3 text-sm text-[#1E293B] shadow-none placeholder:text-[#94A3B8] focus-visible:border-[#EA580C] focus-visible:shadow-[0_0_0_3px_rgba(234,88,12,0.1)] focus-visible:outline-none focus-visible:ring-0 md:text-sm"
@@ -39,7 +40,7 @@ export function LeadFormSection() {
 
     try {
       const supabase = await getSupabaseClient()
-      const { error } = await supabase.from("lead_inquiries").insert({
+      const { error } = await submitLeadInquiry(supabase, {
         name: formData.name.trim(),
         phone: formData.phone.trim(),
         situation: formData.situation.trim() || null,
@@ -53,9 +54,21 @@ export function LeadFormSection() {
           )
           return
         }
-        if (error.code === "42501" || error.message.includes("row-level security")) {
+        if (
+          error.code === "42501" ||
+          error.message.includes("row-level security")
+        ) {
           setSubmitError(
             "저장 권한이 없습니다. Supabase RLS 정책(anon INSERT)을 확인해 주세요."
+          )
+          return
+        }
+        if (
+          error.code === "PGRST204" ||
+          error.message.includes("column")
+        ) {
+          setSubmitError(
+            "테이블 컬럼명이 맞지 않습니다. Supabase SQL Editor에서 fix-lead-inquiries.sql을 실행해 주세요."
           )
           return
         }
