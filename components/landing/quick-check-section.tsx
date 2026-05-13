@@ -12,7 +12,7 @@ const checklistItemClass =
 
 export function QuickCheckSection() {
   return (
-    <section className="bg-[#F8FAFC] px-5 py-12">
+    <section className="bg-[#F8FAFC] px-5 py-12 !pb-6">
       <h2 className="ds-h2 mb-2 text-balance break-keep">
         지금 어떤 상황이신가요?
       </h2>

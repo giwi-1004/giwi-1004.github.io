@@ -44,7 +44,7 @@ const stepIconShellClass =
 
 export function TimelineSection() {
   return (
-    <section className="bg-[#F8FAFC] px-5 py-12">
+    <section className="bg-[#F8FAFC] px-5 py-12 !pt-6">
       <h2 className="ds-h2 mb-2 text-balance break-keep">
         소비자선임권, 지금 바로 신청하세요
       </h2>
@@ -99,13 +99,13 @@ export function TimelineSection() {
                 ) : null}
                 <h3
                   className={cn(
-                    "mb-1 text-base font-bold break-keep",
+                    "mb-1 text-sm font-bold break-keep",
                     highlight ? "text-[#EA580C]" : "text-[#1E293B]"
                   )}
                 >
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed text-[#64748B] break-keep">
+                <p className="text-xs leading-relaxed text-[#64748B] break-keep">
                   {description}
                 </p>
               </div>

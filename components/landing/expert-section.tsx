@@ -11,7 +11,7 @@ const highlightBoxClass =
 
 export function ExpertSection() {
   return (
-    <section className="overflow-x-hidden bg-[#F8FAFC] px-5 py-12">
+    <section className="overflow-x-hidden border-t border-gray-100 bg-white px-5 py-12">
       <div className="flex flex-col items-center">
         <span className="mb-4 inline-flex rounded-full bg-[#FFF7ED] px-3 py-1 text-sm font-semibold text-[#EA580C]">
           담당 손해사정사
@@ -27,7 +27,7 @@ export function ExpertSection() {
           />
         </div>
 
-        <h2 className="mb-4 w-full text-center text-2xl font-bold text-[#1E293B] break-keep">
+        <h2 className="mb-4 w-full text-center text-xl font-bold text-[#1E293B] break-keep">
           오하연 손해사정사
         </h2>
 
