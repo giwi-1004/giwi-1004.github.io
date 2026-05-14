@@ -36,7 +36,10 @@ export function ExpertSection() {
         />
         <div>
           <p className="text-xl font-bold text-white">오하연</p>
-          <p className="text-sm text-white/50">신체손해사정사 · 손해사정법인 태산</p>
+          <p className="text-sm text-white/50">
+            <span className="block">신체손해사정사</span>
+            <span className="block">손해사정법인 태산</span>
+          </p>
         </div>
       </div>
 

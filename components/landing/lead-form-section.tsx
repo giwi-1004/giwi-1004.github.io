@@ -230,7 +230,10 @@ export function LeadFormSection() {
               }
               className="mt-0.5 data-[state=checked]:border-[#c8742a] data-[state=checked]:bg-[#c8742a]"
             />
-            <span className="text-[13px] leading-[1.5] text-[#4a4a5a]">
+            <span
+              className="text-[13px] leading-[1.5] text-[#4a4a5a]"
+              style={{ wordBreak: "keep-all" }}
+            >
               (필수) 개인정보 수집·이용에 동의합니다
             </span>
           </label>
@@ -245,7 +248,10 @@ export function LeadFormSection() {
           </button>
 
           {isTermsOpen && (
-            <div className="ds-caption mt-3 rounded-2xl border border-[#E2E8F0] bg-white p-5 leading-relaxed whitespace-pre-line text-[#334155]">
+            <div
+              className="ds-caption mt-3 rounded-2xl border border-[#E2E8F0] bg-white p-5 leading-relaxed whitespace-pre-line text-[#334155]"
+              style={{ wordBreak: "keep-all" }}
+            >
               개인정보 수집·이용·제공 조회 동의서
 
               오하연 손해사정사는
@@ -344,6 +350,13 @@ export function LeadFormSection() {
           <p className="mt-3 text-sm font-medium text-[#DC2626]">{submitError}</p>
         ) : null}
       </form>
+
+      <p
+        className="text-center text-sm"
+        style={{ color: "#64748B", marginTop: "8px" }}
+      >
+        상담 가능 시간: 오전 9시 ~ 오후 6시
+      </p>
 
       <p className="mt-3 text-center text-xs text-[#8a8a9a]">
         입력하신 정보는 상담 목적으로만 사용됩니다
