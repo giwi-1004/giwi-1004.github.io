@@ -3,11 +3,11 @@
 import { ArrowRight } from "lucide-react"
 
 const statCardClass =
-  "rounded-xl border border-white/20 bg-white/[0.08] px-3 py-4 text-center"
+  "rounded-2xl border border-white/20 bg-[rgba(255,255,255,0.12)] px-3 py-4 text-center"
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !py-14">
+    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !pt-14 !pb-12">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
@@ -43,18 +43,18 @@ export function HeroSection() {
           작성합니다
         </p>
 
-        <div className="hero-animate hero-animate-delay-3 mt-6 grid grid-cols-3 gap-3">
+        <div className="hero-animate hero-animate-delay-3 mt-6 grid grid-cols-3 gap-2">
           <div className={statCardClass}>
             <p className="text-2xl font-bold text-[#D4A44C]">0원</p>
-            <p className="text-xs text-white/50">수수료</p>
+            <p className="text-xs text-white/50 mt-1">수수료</p>
           </div>
           <div className={statCardClass}>
             <p className="text-2xl font-bold text-[#D4A44C]">3일</p>
-            <p className="text-xs text-white/50">신청 기한</p>
+            <p className="text-xs text-white/50 mt-1">신청 기한</p>
           </div>
           <div className={statCardClass}>
             <p className="text-2xl font-bold text-[#D4A44C]">독립</p>
-            <p className="text-xs text-white/50">전문가</p>
+            <p className="text-xs text-white/50 mt-1">전문가</p>
           </div>
         </div>
 
