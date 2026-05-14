@@ -4,9 +4,9 @@ import { Building2, Landmark, Scale } from "lucide-react"
 import { useReveal } from "@/lib/hooks/use-reveal"
 
 const CREDENTIALS = [
-  { Icon: Landmark, text: "국가공인 신체손해사정사" },
-  { Icon: Building2, text: "손해사정법인 태산 소속" },
-  { Icon: Scale, text: "보험사와 무관한 독립 손해사정사" },
+  { Icon: Landmark, text: "국가공인 손해사정사 자격증 보유" },
+  { Icon: Building2, text: "보험사와 무관한 완전 독립 전문가" },
+  { Icon: Scale, text: "소비자선임권 전문 손해사정사" },
 ] as const
 
 export function ExpertSection() {
@@ -23,7 +23,6 @@ export function ExpertSection() {
         >
           담당 손해사정사
         </span>
-        <h2 className="text-2xl font-bold leading-snug text-white break-keep">오하연 손해사정사</h2>
       </div>
 
       <div ref={profileRef} className="reveal flex items-center gap-5 mb-6">
@@ -37,7 +36,7 @@ export function ExpertSection() {
         />
         <div>
           <p className="text-xl font-bold text-white">오하연</p>
-          <p className="text-sm text-white/50">손해사정법인 태산</p>
+          <p className="text-sm text-white/50">신체손해사정사 · 손해사정법인 태산</p>
         </div>
       </div>
 
@@ -54,7 +53,13 @@ export function ExpertSection() {
           ))}
         </div>
 
-        <div className="mt-4 border-l-4 border-[#EA580C] pl-4 text-sm leading-relaxed text-white/60 italic break-keep">
+        <div
+          className="mt-4 border-l-4 border-[#EA580C] pl-4 text-sm leading-relaxed text-white/60 break-keep"
+          style={{
+            fontStyle: "normal",
+            fontFamily: "Noto Sans KR, sans-serif",
+          }}
+        >
           보험사도 가입자도 아닌,
           <br />
           오직 사실에 근거해 객관적으로 사정서를 작성합니다

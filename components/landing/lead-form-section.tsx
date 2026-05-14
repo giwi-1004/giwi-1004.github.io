@@ -9,11 +9,28 @@ import { getSupabaseClient } from "@/lib/supabase/client"
 import { submitLeadInquiry } from "@/lib/supabase/submit-lead"
 import { useReveal } from "@/lib/hooks/use-reveal"
 
+const inputFieldStyle = {
+  borderRadius: "12px",
+  border: "1px solid #E2E8F0",
+  backgroundColor: "#F8FAFC",
+  padding: "12px 16px",
+} as const
+
+const consentAreaStyle = {
+  borderRadius: "12px",
+  border: "1px solid #E2E8F0",
+  backgroundColor: "#F8FAFC",
+  padding: "14px 16px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "6px",
+} as const
+
 const inputFieldClass =
-  "h-auto min-h-0 w-full !rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-base text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus-visible:border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA580C]"
+  "h-auto min-h-0 w-full rounded-none shadow-none text-[#1a1a1e] placeholder:text-[#8a8a9a] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus-visible:border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA580C]"
 
 const textareaFieldClass =
-  "min-h-[100px] w-full resize-y rounded-xl border border-gray-200 bg-[#F8FAFC] px-4 py-3 text-base leading-[1.6] text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA580C]"
+  "min-h-[100px] w-full resize-y rounded-none leading-[1.6] text-[#1a1a1e] shadow-none placeholder:text-[#8a8a9a] focus:outline-none focus:ring-2 focus:ring-[#EA580C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA580C]"
 
 export function LeadFormSection() {
   const [formData, setFormData] = useState({
@@ -145,7 +162,7 @@ export function LeadFormSection() {
         <div>
           <label
             htmlFor="name"
-            className="mb-2 block text-sm font-semibold text-[#1E293B]"
+            className="text-sm font-semibold text-[#1E293B] mb-2"
           >
             이름
           </label>
@@ -157,13 +174,14 @@ export function LeadFormSection() {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
             className={inputFieldClass}
+            style={inputFieldStyle}
           />
         </div>
 
         <div>
           <label
             htmlFor="phone"
-            className="mb-2 block text-sm font-semibold text-[#1E293B]"
+            className="text-sm font-semibold text-[#1E293B] mb-2"
           >
             연락처
           </label>
@@ -180,13 +198,14 @@ export function LeadFormSection() {
             }
             required
             className={inputFieldClass}
+            style={inputFieldStyle}
           />
         </div>
 
         <div>
           <label
             htmlFor="situation"
-            className="mb-2 block text-sm font-semibold text-[#1E293B]"
+            className="text-sm font-semibold text-[#1E293B] mb-2"
           >
             현재 상황
           </label>
@@ -198,10 +217,11 @@ export function LeadFormSection() {
               setFormData({ ...formData, situation: e.target.value })
             }
             className={textareaFieldClass}
+            style={inputFieldStyle}
           />
         </div>
 
-        <div className="rounded-xl border border-gray-100 bg-[#F8FAFC] p-4">
+        <div style={consentAreaStyle}>
           <label className="flex w-full cursor-pointer items-start gap-2.5">
             <Checkbox
               checked={isConsentChecked}
@@ -297,14 +317,25 @@ export function LeadFormSection() {
             !isConsentChecked
           }
           className={cn(
-            "w-full rounded-xl bg-[#EA580C] py-4 text-base font-bold text-white",
+            "w-full py-4 text-base font-bold text-white",
             isSubmitting ||
               !formData.name ||
               !formData.phone ||
               !isConsentChecked
-              ? "cursor-not-allowed opacity-40"
-              : "cursor-pointer opacity-100 hover:bg-[#C2410C]"
+              ? "cursor-not-allowed"
+              : "cursor-pointer hover:bg-[#C2410C]"
           )}
+          style={{
+            backgroundColor: "#EA580C",
+            opacity:
+              isSubmitting ||
+              !formData.name ||
+              !formData.phone ||
+              !isConsentChecked
+                ? 0.4
+                : 1,
+            borderRadius: "12px",
+          }}
         >
           {isSubmitting ? "요청 중..." : "소비자선임권 상담 신청하기"}
         </button>
