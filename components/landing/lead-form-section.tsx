@@ -123,7 +123,12 @@ export function LeadFormSection() {
   return (
     <section id="lead-form" className="overflow-x-hidden bg-[#faf7f2] !px-5 !py-14">
       <div ref={headerRef} className="reveal">
-        <p className="ds-section-label">무료 상담 신청</p>
+        <span
+          className="inline-flex items-center px-3 py-1 rounded-full text-[#EA580C] text-sm font-semibold mb-3"
+          style={{ backgroundColor: "#FED7AA" }}
+        >
+          무료 상담 신청
+        </span>
         <h2 className="text-2xl font-bold leading-snug text-balance break-keep">
           소비자선임권 상담 신청
         </h2>

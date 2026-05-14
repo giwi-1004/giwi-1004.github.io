@@ -1,13 +1,26 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
+import { useRef } from "react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 
 const statCardClass =
   "rounded-2xl border border-white/25 bg-[rgba(255,255,255,0.12)] px-3 py-4 text-center"
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const scrollToNextSection = () => {
+    const next = sectionRef.current?.nextElementSibling
+    if (next instanceof HTMLElement) {
+      next.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
-    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !pt-10 !pb-10">
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !pt-10 !pb-10"
+    >
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
@@ -65,6 +78,16 @@ export function HeroSection() {
           소비자선임권 가능 여부 확인하기
           <ArrowRight className="h-[18px] w-[18px] shrink-0 text-white" aria-hidden />
         </a>
+
+        <button
+          type="button"
+          onClick={scrollToNextSection}
+          aria-label="더 알아보기"
+          className="hero-animate hero-animate-delay-4 mt-8 flex animate-bounce flex-col items-center gap-1 self-center border-0 bg-transparent p-0 text-white/40"
+        >
+          <ChevronDown className="h-5 w-5" aria-hidden />
+          <span className="text-xs">더 알아보기</span>
+        </button>
       </div>
     </section>
   )

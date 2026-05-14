@@ -39,9 +39,14 @@ export function TimelineSection() {
   const stepsRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-[#F8FAFC] !px-5 !py-14">
+    <section className="!px-5 !py-14" style={{ backgroundColor: "#F8FAFC" }}>
       <div ref={headerRef} className="reveal">
-        <p className="ds-section-label">신청 절차</p>
+        <span
+          className="inline-flex items-center px-3 py-1 rounded-full text-[#EA580C] text-sm font-semibold mb-3"
+          style={{ backgroundColor: "#FED7AA" }}
+        >
+          신청 절차
+        </span>
         <h2 className="text-2xl font-bold leading-snug break-keep">
           소비자선임권, 지금 바로 신청하세요
         </h2>
@@ -61,22 +66,33 @@ export function TimelineSection() {
                 </div>
                 {!isLast ? (
                   <div
-                    className="min-h-[52px] w-0 flex-1 border-l-2 border-dashed border-gray-200"
+                    className="w-0 flex-1"
+                    style={{
+                      borderLeft: "2px dashed #E2E8F0",
+                      minHeight: "40px",
+                    }}
                     aria-hidden
                   />
                 ) : null}
               </div>
               <div>
-                <span
-                  className={cn(
-                    "mb-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold tracking-[0.06em]",
-                    step.tagHighlight
-                      ? "bg-[#EA580C] text-white"
-                      : "bg-[rgba(200,116,42,0.1)] text-[#c8742a]"
-                  )}
-                >
-                  {step.tag}
-                </span>
+                {step.tagHighlight ? (
+                  <span
+                    className="inline-flex items-center px-3 py-1 rounded-full text-white text-sm font-bold mb-2"
+                    style={{ backgroundColor: "#EA580C" }}
+                  >
+                    {step.tag}
+                  </span>
+                ) : (
+                  <span
+                    className={cn(
+                      "mb-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold tracking-[0.06em]",
+                      "bg-[rgba(200,116,42,0.1)] text-[#c8742a]"
+                    )}
+                  >
+                    {step.tag}
+                  </span>
+                )}
                 <h3 className="text-base font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
                   {step.title}
                 </h3>

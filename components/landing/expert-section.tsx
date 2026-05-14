@@ -15,32 +15,38 @@ export function ExpertSection() {
   const contentRef = useReveal<HTMLDivElement>()
 
   return (
-    <section className="bg-[#1E293B] !px-5 !py-14 text-white">
+    <section className="bg-[#1E293B] !px-5 !pt-14 !pb-12 text-white">
       <div ref={headerRef} className="reveal">
-        <p className="ds-section-label text-[#d4a44c]">담당 손해사정사</p>
+        <span
+          className="inline-flex items-center px-3 py-1 rounded-full text-[#D4A44C] text-sm font-semibold mb-3"
+          style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+        >
+          담당 손해사정사
+        </span>
         <h2 className="text-2xl font-bold leading-snug text-white break-keep">오하연 손해사정사</h2>
       </div>
 
-      <div ref={profileRef} className="reveal mt-6 flex items-center gap-4">
+      <div ref={profileRef} className="reveal flex items-center gap-5 mb-6">
         <img
           src="/ohayeon-profile.png"
           alt="오하연 손해사정사 프로필"
-          width={96}
-          height={128}
-          className="h-32 w-24 shrink-0 rounded-2xl object-cover object-top"
+          width={120}
+          height={150}
+          className="shrink-0 rounded-2xl object-cover"
+          style={{ width: "120px", height: "150px" }}
         />
         <div>
           <p className="text-xl font-bold text-white">오하연</p>
-          <p className="text-sm text-white/50">손해사정법인 태산 소속</p>
+          <p className="text-sm text-white/50">손해사정법인 태산</p>
         </div>
       </div>
 
       <div ref={contentRef} className="reveal mt-6">
-        <div className="space-y-4">
+        <div className="space-y-3">
           {CREDENTIALS.map(({ Icon, text }) => (
             <div
               key={text}
-              className="flex items-center gap-3 text-sm text-white/80"
+              className="flex items-center gap-3 py-3 text-sm text-white/80"
             >
               <Icon className="h-5 w-5 shrink-0 text-[#EA580C]" aria-hidden />
               <span className="break-keep">{text}</span>
@@ -48,7 +54,7 @@ export function ExpertSection() {
           ))}
         </div>
 
-        <div className="mt-6 border-l-4 border-[#EA580C] pl-4 text-sm leading-relaxed text-white/60 italic break-keep">
+        <div className="mt-4 border-l-4 border-[#EA580C] pl-4 text-sm leading-relaxed text-white/60 italic break-keep">
           보험사도 가입자도 아닌,
           <br />
           오직 사실에 근거해 객관적으로 사정서를 작성합니다

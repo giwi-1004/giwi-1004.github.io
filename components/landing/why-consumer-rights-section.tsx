@@ -29,31 +29,36 @@ const CARD_BOTTOM: {
     "복잡한 서류와 보험사 대응을 손해사정사가 직접 처리합니다",
 }
 
-const cardClass =
-  "h-full rounded-2xl border border-gray-100 bg-white p-5 shadow-sm"
-
 function BenefitCard({
   Icon,
   title,
   description,
   className,
+  fullHeight = false,
 }: {
   Icon: LucideIcon
   title: string
   description: string
   className?: string
+  fullHeight?: boolean
 }) {
   return (
-    <div className={cn(cardClass, className)}>
-      <div className="space-y-2">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFF7ED] p-3">
-          <Icon className="h-5 w-5 text-[#EA580C]" aria-hidden />
-        </div>
-        <h3 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
-          {title}
-        </h3>
-        <p className="text-sm leading-relaxed text-[#64748B] break-keep">{description}</p>
+    <div
+      className={cn("rounded-2xl p-5 space-y-2", className)}
+      style={{
+        backgroundColor: "#FFFFFF",
+        border: "1px solid #E2E8F0",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+        ...(fullHeight ? { height: "100%" } : {}),
+      }}
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFF7ED] p-3">
+        <Icon className="h-5 w-5 text-[#EA580C]" aria-hidden />
       </div>
+      <h3 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a2e] break-keep">
+        {title}
+      </h3>
+      <p className="text-sm leading-relaxed text-[#64748B] break-keep">{description}</p>
     </div>
   )
 }
@@ -65,7 +70,12 @@ export function WhyConsumerRightsSection() {
   return (
     <section className="bg-[#F8FAFC] !px-5 !py-14">
       <div ref={headerRef} className="reveal">
-        <p className="ds-section-label">소비자선임권 혜택</p>
+        <span
+          className="inline-flex items-center px-3 py-1 rounded-full text-[#EA580C] text-sm font-semibold mb-3"
+          style={{ backgroundColor: "#FED7AA" }}
+        >
+          소비자선임권 혜택
+        </span>
         <h2 className="text-2xl font-bold leading-snug break-keep">
           소비자선임권, 이런점이 좋습니다
         </h2>
@@ -81,14 +91,14 @@ export function WhyConsumerRightsSection() {
             Icon={Icon}
             title={title}
             description={description}
-            className="h-full"
+            fullHeight
           />
         ))}
         <BenefitCard
           Icon={CARD_BOTTOM.Icon}
           title={CARD_BOTTOM.title}
           description={CARD_BOTTOM.description}
-          className="col-span-2 h-full"
+          className="col-span-2"
         />
       </div>
     </section>
