@@ -7,7 +7,7 @@ const statCardClass =
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !pt-14 !pb-12">
+    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-[#1a1a2e] !px-5 !pt-10 !pb-10">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
@@ -30,20 +30,20 @@ export function HeroSection() {
           실손보험 소비자선임권
         </span>
 
-        <h1 className="hero-animate hero-animate-delay-1 text-3xl leading-tight font-bold tracking-[-0.02em] text-white text-balance break-keep">
+        <h1 className="hero-animate hero-animate-delay-1 mb-3 text-3xl leading-tight font-bold tracking-[-0.02em] text-white text-balance break-keep">
           보험금 청구 전후,{" "}
           <span className="text-[#d4a44c]">당신에게 권리가 있습니다</span>
         </h1>
 
         <p
-          className="hero-animate hero-animate-delay-2 mt-3 text-sm leading-relaxed text-white/60 break-keep"
+          className="hero-animate hero-animate-delay-2 mb-6 text-sm leading-relaxed text-white/60 break-keep"
           style={{ fontFamily: "'Noto Sans KR', sans-serif" }}
         >
           내가 지정한 손해사정사가 보험사와 무관하게 독립적으로 조사하고 사정서를
           작성합니다
         </p>
 
-        <div className="hero-animate hero-animate-delay-3 mt-6 grid grid-cols-3 gap-2">
+        <div className="hero-animate hero-animate-delay-3 mb-6 grid grid-cols-3 gap-2">
           <div className={statCardClass}>
             <p className="text-2xl font-bold text-[#D4A44C]">0원</p>
             <p className="text-xs text-white/50 mt-1">수수료</p>
