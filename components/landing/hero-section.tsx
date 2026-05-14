@@ -3,7 +3,7 @@
 import { ArrowRight } from "lucide-react"
 
 const statCardClass =
-  "rounded-2xl border border-white/20 bg-[rgba(255,255,255,0.12)] px-3 py-4 text-center"
+  "rounded-2xl border border-white/25 bg-[rgba(255,255,255,0.12)] px-3 py-4 text-center"
 
 export function HeroSection() {
   return (
@@ -60,7 +60,7 @@ export function HeroSection() {
 
         <a
           href="#lead-form"
-          className="hero-animate hero-animate-delay-4 mt-6 flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#EA580C] py-4 text-base font-bold text-white no-underline transition-colors hover:bg-[#C2410C]"
+          className="hero-animate hero-animate-delay-4 mt-6 flex w-full items-center justify-center gap-2.5 !rounded-xl bg-[#EA580C] py-4 text-base font-bold text-white no-underline transition-colors hover:bg-[#C2410C]"
         >
           소비자선임권 가능 여부 확인하기
           <ArrowRight className="h-[18px] w-[18px] shrink-0 text-white" aria-hidden />
