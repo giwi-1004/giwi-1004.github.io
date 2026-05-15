@@ -44,8 +44,9 @@ export function HeroSection() {
         </span>
 
         <h1 className="hero-animate hero-animate-delay-1 mb-3 text-3xl leading-tight font-bold tracking-[-0.02em] text-white text-balance break-keep">
-          보험금 청구 전후,{" "}
-          <span className="text-[#d4a44c]">당신에게 권리가 있습니다</span>
+          보험금 청구 할 일이 있으신가요?
+          <br />
+          <span className="text-[#d4a44c]">3영업일 안에 꼭 아셔야 할 제도가 있습니다</span>
         </h1>
 
         <p
