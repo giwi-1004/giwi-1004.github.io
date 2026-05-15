@@ -117,21 +117,49 @@ export function LeadFormSection() {
   if (isSubmitted) {
     return (
       <section id="lead-form" className="overflow-x-hidden bg-[#faf7f2] !px-5 !py-14">
-        <div className="text-center">
+        <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm text-center">
           <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#c8742a]/10">
             <CheckCircle2 className="h-10 w-10 text-[#c8742a]" />
           </div>
           <h2 className="text-2xl font-bold leading-snug break-keep">
-            확인 요청이 완료되었습니다
+            상담 신청이 완료됐습니다
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[#64748B] break-keep">
-            입력하신 연락처로
+            입력하신 번호로 담당 손해사정사가
             <br />
-            빠른 시간 내에 연락드리겠습니다.
+            직접 연락드립니다
           </p>
-          <p className="mt-3 text-sm font-semibold text-[#c8742a]">
-            상담 신청이 정상 접수되었습니다.
+
+          <div
+            className="mt-5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 text-left text-sm leading-relaxed text-[#64748B] break-keep"
+            style={{ wordBreak: "keep-all" }}
+          >
+            <p className="font-semibold text-[#1E293B]">🕐 상담 가능 시간</p>
+            <p className="mt-2">평일 오전 9시 ~ 오후 6시</p>
+            <p className="mt-1">
+              신청 시간에 따라 다음 영업일에
+              <br />
+              연락드릴 수 있습니다
+            </p>
+          </div>
+
+          <p className="mt-4 text-sm leading-relaxed text-[#64748B] break-keep">
+            빠른 확인은 카카오톡으로 먼저
+            <br />
+            문의하실 수 있습니다
           </p>
+
+          <button
+            type="button"
+            onClick={() => setIsSubmitted(false)}
+            className="mt-6 w-full cursor-pointer py-4 text-base font-bold text-white transition-colors hover:bg-[#C2410C]"
+            style={{
+              backgroundColor: "#EA580C",
+              borderRadius: "12px",
+            }}
+          >
+            확인
+          </button>
         </div>
       </section>
     )
